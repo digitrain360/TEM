@@ -24,7 +24,7 @@
 				<nav class="navbar navbar-expand-sm justify-content-right navbar-light top-fixed">
 				  <ul class="navbar-nav">
 				    <li class="nav-item">
-				      <a class="nav-link" href="#"><span class="badge badge-pill badge-primary">Home</span></a>
+				      <a class="nav-link" href="HomePage.Html"><span class="badge badge-pill badge-primary">Home</span></a>
 				    </li>
 				    <li class="nav-item">
 				      <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">Environments</span></a>
