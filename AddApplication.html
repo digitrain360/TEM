@@ -17,90 +17,37 @@
 // define variables and set to empty values
 $AppIDErr = $AppNameErr = $AppTypeErr = $AppCatErr = $AppProgLangErr = "";
 $Application_ID = $Application_Name = $Application_Type = $Application_Category = $Application_Prog_Language = "";
-$insertSqlDBStatus = "";
-$ValidationStatus = "Success";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["Application_ID"])) {
     $AppIDErr = "Application ID is required";
-    $ValidationStatus = "Error";
   } else {
       $Application_ID = test_input($_POST["Application_ID"]);
   }
 
   if (empty($_POST["Application_Name"])) {
     $AppNameErr = "Application Name is required";
-    $ValidationStatus = "Error";
   } else {
     $Application_Name = test_input($_POST["Application_Name"]);
   }
 
   if (empty($_POST["Application_Type"])) {
       $AppTypeErr = "Application Type is Required";
-    $ValidationStatus = "Error";
   } else {
       $Application_Type = test_input($_POST["Application_Type"]);
   }
 
   if (empty($_POST["Application_Category"])) {
     $AppCatErr = "Application Category is required";
-    $ValidationStatus = "Error";
   } else {
     $Application_Category = test_input($_POST["Application_Category"]);
   }
 
   if (empty($_POST["Application_Prog_Language"])) {
     $AppProgLangErr = "Application Programming Language is required";
-    $ValidationStatus = "Error";
   } else {
     $Application_Prog_Language = test_input($_POST["Application_Prog_Language"]);
   }
-
-  if ($ValidationStatus == "Success"){
-	$insertSqlDBStatus = insert_db($Application_ID,$Application_Name,$Application_Type,$Application_Category,$Application_Prog_Language);
-	}
-
-}
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-function insert_db($Application_ID,$Application_Name,$Application_Type,$Application_Category,$Application_Prog_Language) 
-{
-	$servername = "dtemdm01.mysql.database.azure.com";
-	$username = "temdbmadm@dtemdm01";
-	$password = "waheguru@1112";
-	$options = array(
-    	PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-    	PDO::MYSQL_ATTR_SSL_CA => '/SSL/BaltimoreCyberTrustRoot.crt',
-    	PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
-	);
-
-/*	$servername = "localhost";
-	$username = "root";
-	$password = "temjul19";
-	$dbname = "dbtemd01";*/
-    $result = "";
-	try {
-	    $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
-    	// set the PDO error mode to exception
-    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    	$sql = "INSERT INTO application (Application_ID,Application_Name,Application_Type,Application_Category,Application_Prog_Language)
-    	VALUES ('$Application_ID','$Application_Name','$Application_Type','$Application_Category','$Application_Prog_Language')";
-    	// use exec() because no results are returned
-    	$conn->exec($sql);
-    	$result="Success";
-    	}
-	catch(PDOException $e)
-    	{
-    	$result= $sql . "<br>" . $e->getMessage();
-    	}
-
-	$conn = null;
-	return $result;
 }
 ?>
  <!--<div class="jumbotron text-center bg-primary">
@@ -111,25 +58,26 @@ function insert_db($Application_ID,$Application_Name,$Application_Type,$Applicat
   	<div class="container">
   		<div class="row">
   			<div class="col-sm-2">
-  				<img src="images\Logo1.png" class="img-fluid" alt="logo1">
+  				<h1>Logo Area</h1>
+  				<p>Just for Testing</p>
   			</div>
 			<div class="col-sm-10">
-				<nav class="navbar navbar-expand-sm justify-content-right navbar-light top-fixed">
+				<nav class="navbar navbar-expand-sm bg-primary navbar-light">
 				  <ul class="navbar-nav">
 				    <li class="nav-item">
-				      <a class="nav-link" href="HomePage.html"><span class="badge badge-pill badge-secondary">Home</span></a>
+				      <a class="nav-link" href="bootstrap-test.html">Home</a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="EnvHome.php"><span class="badge badge-pill badge-secondary">Environments</span></a>
+				      <a class="nav-link" href="#">Environments</a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="AppHome.php"><span class="badge badge-pill badge-secondary">Applications</span></a>
+				      <a class="nav-link" href="#">Applications</a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="ServerHome.php"><span class="badge badge-pill badge-secondary">Servers</span></a>
+				      <a class="nav-link" href="#">Servers</a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">Health Check</span></a>
+				      <a class="nav-link" href="#">Health Check</a>
 				    </li>
 				  </ul>
 				</nav>
@@ -155,8 +103,8 @@ function insert_db($Application_ID,$Application_Name,$Application_Type,$Applicat
 			<div class="col-sm-10">
 				<h1> Please enter details below and press submit</h1>
 				<p><span class="error">* required field</span></p>
-			<!-- <form method="post" action="/action_page.php">  -->
-				 <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+<!-- 					<form method="post" action="/action_page.php">   -->
+			<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>"> 
 	    			<div class="form-group">
 	      				<label for="Application ID">Application ID:</label>
 	      				<input type="text" class="form-control" id="Application_ID" placeholder="Enter Application ID" name="Application_ID">
@@ -185,7 +133,16 @@ function insert_db($Application_ID,$Application_Name,$Application_Type,$Applicat
 	    			<button type="submit" class="btn btn-primary">Submit</button>
 	    		</form>
 	    		<?php
-					echo $insertSqlDBStatus;
+					echo "<h2>Your Input:</h2>";
+					echo $Application_ID;
+					echo "<br>";
+					echo $Application_Name;
+					echo "<br>";
+					echo $Application_Category;
+					echo "<br>";
+					echo $Application_Type;
+					echo "<br>";
+					echo $Application_Prog_Language;
 				?>
 			</div>
 		</div>

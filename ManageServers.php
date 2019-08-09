@@ -141,14 +141,11 @@ function insert_db($Application_ID,$Application_Name,$Application_Type,$Applicat
 			<div class="col-sm-2">
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Allocations</a>
+						<a class="nav-link active" href="ManageServers.php">ManageServers</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">App Instances</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="#">Add Application</a>
-					</li>
+						<a class="nav-link" href="#">Servers Report</a>
+					</li>					
 				</ul>
 				<hr class="d-sm-none">
 			</div>
@@ -158,33 +155,69 @@ function insert_db($Application_ID,$Application_Name,$Application_Type,$Applicat
 			<!-- <form method="post" action="/action_page.php">  -->
 				 <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 	    			<div class="form-group">
-	      				<label for="Application ID">Application ID:</label>
-	      				<input type="text" class="form-control" id="Application_ID" placeholder="Enter Application ID" name="Application_ID">
-	      				<p><span class="error">* <?php echo $AppIDErr;?></span></p>
+	      				<label for="Server ID">Server ID:</label>
+	      				<input type="text" class="form-control" id="Server_ID" placeholder="Enter Server ID" name="Server_ID">
+	      				<p><span class="error">* <?php echo $ServerIDErr;?></span></p>
 	    			</div>
 	    			<div class="form-group">
-	      				<label for="Application Name">Application Name:</label>
-	      				<input type="text" class="form-control" id="Application_Name" placeholder="Enter Application Name" name="Application_Name">
+	      				<label for="Server Name">Server Name:</label>
+	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name">
 	      				<p><span class="error">* <?php echo $AppNameErr;?></span></p>
 	    			</div>
 	    			<div class="form-group">
-	      				<label for="Application Type">Application Type:</label>
-	      				<input type="text" class="form-control" id="Application_Type" placeholder="Enter Application Type" name="Application_Type">
+	      				<label for="Server IP Addres">Server Name:</label>
+	      				<input type="text" class="form-control" id="Server_IP_Address" placeholder="Enter Server IP Address" name="Server_IP_Address">
+	      				<p><span class="error">* <?php echo $AppNameErr;?></span></p>
+	    			</div>
+	    			<div class="form-group">
+	      				<label for="Server Type">Server Type:</label>
+	      				<input type="text" class="form-control" id="Server_Type" placeholder="Enter Server Type" name="Server_Type">
 	      				<p><span class="error">* <?php echo $AppTypeErr;?></span></p>
 	    			</div>
 	    			<div class="form-group">
-	      				<label for="Application Category">Application Category:</label>
-	      				<input type="text" class="form-control" id="Application_Category" placeholder="Enter Application Category" name="Application_Category">
+	      				<label for="Server Utilization Type">Server Utilization Type:</label>
+	      				<input type="text" class="form-control" id="Server_Util_Type" placeholder="Enter Server Utilization Type" name="Server_Util_Type">
 	      				<p><span class="error">* <?php echo $AppCatErr;?></span></p>
 	    			</div>
 	    			<div class="form-group">
-	      				<label for="Prog Language">Programming Language:</label>
-	      				<input type="text" class="form-control" id="Application_Prog_Language" placeholder="Enter Programming Language" name="Application_Prog_Language">
+	      				<label for="Server Operating System">Server Operating System:</label>
+	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Operating System" name="Server_OS">
+	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	    			</div>
+	    			<div class="form-group">
+	      				<label for="Server Location">Server Location:</label>
+	      				<input type="text" class="form-control" id="Server_Location" placeholder="Enter Server Location" name="Server_Location">
+	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	    			</div>
+	    			<div class="form-group">
+	      				<label for="Server CPU">Server CPUs:</label>
+	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server CPUs" name="Server_CPU">
+	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	    			</div>
+	    			<div class="form-group">
+	      				<label for="Server RAM">Server RAM Allocation System:</label>
+	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server RAM Allocation" name="Server_RAM">
+	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	    			</div>
+	    			<div class="form-group">
+	      				<label for="Server Storage Allocation">Server Storage Allocation:</label>
+	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation">
 	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
 	    			</div>
 	    			<button type="submit" class="btn btn-primary">Submit</button>
 	    		</form>
 	    		<?php
+					echo "<h2>Your Input:</h2>";
+					echo $Application_ID;
+					echo "<br>";
+					echo $Application_Name;
+					echo "<br>";
+					echo $Application_Category;
+					echo "<br>";
+					echo $Application_Type;
+					echo "<br>";
+					echo $Application_Prog_Language;
+					echo "<br>";
 					echo $insertSqlDBStatus;
 				?>
 			</div>

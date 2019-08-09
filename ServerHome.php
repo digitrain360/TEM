@@ -24,7 +24,7 @@
 				<nav class="navbar navbar-expand-sm justify-content-right navbar-light top-fixed">
 				  <ul class="navbar-nav">
 				    <li class="nav-item">
-				      <a class="nav-link" href="#"><span class="badge badge-pill badge-primary">Home</span></a>
+				      <a class="nav-link" href="HomePage.Html"><span class="badge badge-pill badge-secondary">Home</span></a>
 				    </li>
 				    <li class="nav-item">
 				      <a class="nav-link" href="EnvHome.php"><span class="badge badge-pill badge-secondary">Environments</span></a>
@@ -33,7 +33,7 @@
 				      <a class="nav-link" href="AppHome.php"><span class="badge badge-pill badge-secondary">Applications</span></a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="ServerHome.php"><span class="badge badge-pill badge-secondary">Servers</span></a>
+				      <a class="nav-link" href="ServerHome.php"><span class="badge badge-pill badge-primary">Servers</span></a>
 				    </li>
 				    <li class="nav-item">
 				      <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">Health Check</span></a>
@@ -48,15 +48,11 @@
 			<div class="col-sm-2">
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Allocations</a>
+						<a class="nav-link" href="ManageServers.php">ManageServers</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">App Instances</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="AddApplication.php">Add Application</a>
-					</li>
-					
+						<a class="nav-link" href="#">Servers Report</a>
+					</li>					
 				</ul>
 				<hr class="d-sm-none">
 			</div>
@@ -65,46 +61,45 @@
 					<div class="col-sm-5">
 						<div class="card border-secondary">
 							<div class="card-header bg-dark text-light">
-	    						<h5>Environments</h5>							
+	    						<h5>Servers</h5>							
 							</div>
-	  						<div class="card-body">
-	    						<p class="card-text">Environments Inventory contains information for all Environments, its constituent applications and the allocations.</p>
-	    						<a href="#" class="card-link">Learn more</a>
+							<div class="card-body">
+	    						<p class="card-text">There are many servers within an organization. A report can be generated for the same.</p>
+	    						<a href="#" class="card-link">Get Server Report</a>
 	  						</div>
 	  					</div>
 					</div>
-
 					<div class="col-sm-5">
 						<div class="card border-secondary">
 							<div class="card-header bg-dark text-light">
-	    						<h5>Applications</h5>							
+	    						<h5>Server Search</h5>							
 							</div>
-							<div class="card-body">
-	    						<p class="card-text">Application Inventory will contain Information about Applications and the instances for those applications.</p>
-	    						<a href="#" class="card-link">Learn more</a>
+	  						<div class="card-body">
+	    						<p class="card-text">Search for Server by criteria</p>
+	    						<a href="#" class="card-link">Coming soon</a>
 	  						</div>
 	  					</div>
-					</div>
 				</div>
+			</div>
 				<div class="row mt-5">
 					<div class="col-sm-5">
 						<div class="card border-secondary">
 							<div class="card-header bg-dark text-light">
-	    						<h5>Servers</h5>							
+	    						<h5>Manage Servers</h5>							
 							</div>
 	  						<div class="card-body">
-	    						<p class="card-text">Servers Inventory contains information for all Servers, specifications and the other details related to them.</p>
-	    						<a href="#" class="card-link">Learn more</a>
+	    						<p class="card-text">Add new servers or manage existing servers</p>
+	    						<a href="#" class="card-link">Coming soon</a>
 	  						</div>
 	  					</div>
 					</div>
 					<div class="col-sm-5">
 						<div class="card border-secondary">
 							<div class="card-header bg-dark text-light">
-	    						<h5>Health Checks</h5>							
+	    						<h5>Guidelines</h5>							
 							</div>
 							<div class="card-body">
-	    						<p class="card-text">Health Check Dashboard Page will show the health of various Environments, constituent Apps and Integrations.</p>
+	    						<p class="card-text">Server Management Guidelines and general principals</p>
 	    						<a href="#" class="card-link">Learn more</a>
 	  						</div>
 	  					</div>

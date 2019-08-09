@@ -33,7 +33,7 @@
 				      <a class="nav-link" href="AppHome.php"><span class="badge badge-pill badge-secondary">Applications</span></a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="SerHome.php"><span class="badge badge-pill badge-secondary">Servers</span></a>
+				      <a class="nav-link" href="ServerHome.php"><span class="badge badge-pill badge-secondary">Servers</span></a>
 				    </li>
 				    <li class="nav-item">
 				      <a class="nav-link" href="HlcHome.php"><span class="badge badge-pill badge-secondary">Health Check</span></a>
