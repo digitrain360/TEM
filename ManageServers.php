@@ -186,7 +186,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 			</div>
 			<div class="col-sm-10">
 				<div class="tab-content">
-					<div class="tab-pane active container" id="Add Server">
+					<div class="tab-pane active container" id="Add">
 						<h1> Please enter details below and press submit</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
@@ -232,7 +232,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	      						<p><span class="error">* <?php echo $Server_CPU_Err;?></span></p>
 	    					</div>
 	    					<div class="form-group">
-	      						<label for="Server RAM">Server RAM Allocation System:</label>
+	      						<label for="Server RAM">Server RAM Allocation:</label>
 	      						<input type="text" class="form-control" id="Server_RAM" placeholder="Enter Server RAM Allocation" name="Server_RAM">
 	      						<p><span class="error">* <?php echo $Server_RAM_Err;?></span></p>
 	    					</div>
@@ -248,9 +248,9 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 				            ?>
 	    				</form>
 	    			</div>
-	    			<div class="tab-pane active container" id="Update Server Details">
+	    			<div class="tab-pane container fade" id="Update">
 	    			</div>
-	    			<div class="tab-pane active container" id="Remove Server Details">
+	    			<div class="tab-pane container fade" id="Remove">
 	    			</div>
 	    		</div>
 			</div>
