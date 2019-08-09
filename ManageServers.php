@@ -81,14 +81,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $Server_RAM_Err = "Server RAM details are required";
       $ValidationStatus = "Error";
   } else {
-      $Server_RAM = test_input($_POST["Server_OS"]);
+      $Server_RAM = test_input($_POST["Server_RAM"]);
   }
   
   if (empty($_POST["Server_Storage_Allocation"])) {
       $Server_Storage_Allocation_Err = "Server Storage Allocation details are required";
       $ValidationStatus = "Error";
   } else {
-      $Server_Storage_Allocation = test_input($_POST["Server_OS"]);
+      $Server_Storage_Allocation = test_input($_POST["Server_Storage_Allocation"]);
   }
 
   if ($ValidationStatus == "Success"){
@@ -185,66 +185,74 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 				<hr class="d-sm-none">
 			</div>
 			<div class="col-sm-10">
-				<h1> Please enter details below and press submit</h1>
-				<p><span class="error">* required field</span></p>
-			<!-- <form method="post" action="/action_page.php">  -->
-				 <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-	    			<div class="form-group">
-	      				<label for="Server ID">Server ID:</label>
-	      				<input type="text" class="form-control" id="Server_ID" placeholder="Enter Server ID" name="Server_ID">
-	      				<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
+				<div class="tab-content">
+					<div class="tab-pane active container" id="Add Server">
+						<h1> Please enter details below and press submit</h1>
+						<p><span class="error">* required field</span></p>
+			             <!-- <form method="post" action="/action_page.php">  -->
+				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+	    					<div class="form-group">
+	      						<label for="Server ID">Server ID:</label>
+	      						<input type="text" class="form-control" id="Server_ID" placeholder="Enter Server ID" name="Server_ID">
+	      						<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
+	    					</div>
+        	    			<div class="form-group">
+        	      				<label for="Server Name">Server Name:</label>
+        	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name">
+        	      				<p><span class="error">* <?php echo $Server_Name_Err;?></span></p>
+        	    			</div>
+        	    			<div class="form-group">
+        	      				<label for="Server IP Address">Server Name:</label>
+        	      				<input type="text" class="form-control" id="Server_IP_Address" placeholder="Enter Server IP Address" name="Server_IP_Address">
+        	      				<p><span class="error">* <?php echo $Server_IP_Address_Err;?></span></p>
+        	    			</div>
+        	    			<div class="form-group">
+        	      				<label for="Server Type">Server Type:</label>
+        	      				<input type="text" class="form-control" id="Server_Type" placeholder="Enter Server Type" name="Server_Type">
+        	      				<p><span class="error">* <?php echo $Server_Type_Err;?></span></p>
+        	    			</div>
+        	    			<div class="form-group">
+        	      				<label for="Server Utilization Type">Server Utilization Type:</label>
+        	      				<input type="text" class="form-control" id="Server_Util_Type" placeholder="Enter Server Utilization Type" name="Server_Util_Type">
+        	      				<p><span class="error">* <?php echo $Server_Util_Type_Err;?></span></p>
+        	    			</div>
+        	    			<div class="form-group">
+        	      				<label for="Server Operating System">Server Operating System:</label>
+        	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Operating System" name="Server_OS">
+        	      				<p><span class="error">* <?php echo $Server_OS_Err;?></span></p>
+        	    			</div>
+        	    			<div class="form-group">
+        	      				<label for="Server Location">Server Location:</label>
+        	      				<input type="text" class="form-control" id="Server_Location" placeholder="Enter Server Location" name="Server_Location">
+        	      				<p><span class="error">* <?php echo $Server_Location_Err;?></span></p>
+        	    			</div>
+			    			<div class="form-group">
+	    		  				<label for="Server CPU">Server CPUs:</label>
+	      						<input type="text" class="form-control" id="Server_CPU" placeholder="Enter Server CPUs" name="Server_CPU">
+	      						<p><span class="error">* <?php echo $Server_CPU_Err;?></span></p>
+	    					</div>
+	    					<div class="form-group">
+	      						<label for="Server RAM">Server RAM Allocation System:</label>
+	      						<input type="text" class="form-control" id="Server_RAM" placeholder="Enter Server RAM Allocation" name="Server_RAM">
+	      						<p><span class="error">* <?php echo $Server_RAM_Err;?></span></p>
+	    					</div>
+	    					<div class="form-group">
+	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
+	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation">
+	      						<p><span class="error">* <?php echo $Server_Storage_Allocation_Err;?></span></p>
+	    					</div>
+	    					<button type="submit" class="btn btn-primary">Submit</button>
+	    					<?php
+					           echo "<h2>Result</h2>";
+					           echo $insertSqlDBStatus;
+				            ?>
+	    				</form>
 	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server Name">Server Name:</label>
-	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name">
-	      				<p><span class="error">* <?php echo $Server_Name_Err;?></span></p>
+	    			<div class="tab-pane active container" id="Update Server Details">
 	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server IP Address">Server Name:</label>
-	      				<input type="text" class="form-control" id="Server_IP_Address" placeholder="Enter Server IP Address" name="Server_IP_Address">
-	      				<p><span class="error">* <?php echo $Server_IP_Address_Err;?></span></p>
+	    			<div class="tab-pane active container" id="Remove Server Details">
 	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server Type">Server Type:</label>
-	      				<input type="text" class="form-control" id="Server_Type" placeholder="Enter Server Type" name="Server_Type">
-	      				<p><span class="error">* <?php echo $Server_Type_Err;?></span></p>
-	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server Utilization Type">Server Utilization Type:</label>
-	      				<input type="text" class="form-control" id="Server_Util_Type" placeholder="Enter Server Utilization Type" name="Server_Util_Type">
-	      				<p><span class="error">* <?php echo $Server_Util_Type_Err;?></span></p>
-	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server Operating System">Server Operating System:</label>
-	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Operating System" name="Server_OS">
-	      				<p><span class="error">* <?php echo $Server_OS_Err;?></span></p>
-	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server Location">Server Location:</label>
-	      				<input type="text" class="form-control" id="Server_Location" placeholder="Enter Server Location" name="Server_Location">
-	      				<p><span class="error">* <?php echo $Server_Location_Err;?></span></p>
-	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server CPU">Server CPUs:</label>
-	      				<input type="text" class="form-control" id="Server_CPU" placeholder="Enter Server CPUs" name="Server_CPU">
-	      				<p><span class="error">* <?php echo $Server_CPU_Err;?></span></p>
-	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server RAM">Server RAM Allocation System:</label>
-	      				<input type="text" class="form-control" id="Server_RAM" placeholder="Enter Server RAM Allocation" name="Server_RAM">
-	      				<p><span class="error">* <?php echo $Server_RAM_Err;?></span></p>
-	    			</div>
-	    			<div class="form-group">
-	      				<label for="Server Storage Allocation">Server Storage Allocation:</label>
-	      				<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation">
-	      				<p><span class="error">* <?php echo $Server_Storage_Allocation_Err;?></span></p>
-	    			</div>
-	    			<button type="submit" class="btn btn-primary">Submit</button>
-	    		</form>
-	    		<?php
-					echo "<h2>Result</h2>";
-					echo $insertSqlDBStatus;
-				?>
+	    		</div>
 			</div>
 		</div>
 	</div>
