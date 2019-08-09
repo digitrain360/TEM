@@ -27,10 +27,10 @@
 				      <a class="nav-link" href="HomePage.Html"><span class="badge badge-pill badge-secondary">Home</span></a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="EnvHome.php"><span class="badge badge-pill badge-primary">Environments</span></a>
+				      <a class="nav-link" href="EnvHome.php"><span class="badge badge-pill badge-secondary">Environments</span></a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="AppHome.php"><span class="badge badge-pill badge-secondary">Applications</span></a>
+				      <a class="nav-link" href="AppHome.php"><span class="badge badge-pill badge-primary">Applications</span></a>
 				    </li>
 				    <li class="nav-item">
 				      <a class="nav-link" href="SerHome.php"><span class="badge badge-pill badge-secondary">Servers</span></a>
@@ -63,26 +63,22 @@
 			<div class="col-sm-10">
 				<div class="row">
 					<div class="col-sm-10">
-        				<h5> Here is a list of Environments</h5>
+        				<h5> Here is a list of Applications</h5>
         				<table class="table table-bordered">
         					<thead>
         						<tr>
-        							<th>Environment Name</th>
-        							<th>Guidewire</th>
-        							<th>ESB</th>
-        							<th>TCM</th>
-        							<th>DRS</th>
-        							<th>Mainframe</th>
+        							<th>Application Name</th>
+        							<th>Application Type</th>
+        							<th>Application Category</th>
+        							<th>Application Programming Language</th>
         						</tr>
         					</thead>
         					<tbody>
         						<tr>
-        							<td>Dev</td>
-        							<td>Dev1</td>
-        							<td>DLI1</td>
-        							<td>Dev</td>
-        							<td>dev</td>
-        							<td>DEVCICS</td>
+        							<td>Guidewire</td>
+        							<td>Internal</td>
+        							<td>User Based</td>
+        							<td>Java</td>
         						</tr>
         					</tbody>
         				</table>
@@ -91,29 +87,25 @@
 				</div>
 				<div class="row mt-5">
 					<div class="col-sm-10">
-						<h2> Here is a list of Environments</h2>
-						<table class="table table-bordered">
-    						<thead>
-    							<tr>
-             						<th>Environment Name</th>            
-             						<th>Guidewire</th>
-           							<th>ESB</th>
-           							<th>TCM</th>
-           							<th>DRS</th>
-           							<th>Mainframe</th>
-           						</tr>
-           					</thead>
-           					<tbody>
-           						<tr>
-           							<td>Dev</td>
-           							<td>Dev1</td>
-           							<td>DLI1</td>
-           							<td>Dev</td>
-            						<td>dev</td>
-            						<td>DEVCICS</td>
-            					</tr>
-            				</tbody>
-            			</table>
+        				<h5> Here is a list of Applications</h5>
+        				<table class="table table-bordered">
+        					<thead>
+        						<tr>
+        							<th>Application Name</th>
+        							<th>Application Type</th>
+        							<th>Application Category</th>
+        							<th>Application Programming Language</th>
+        						</tr>
+        					</thead>
+        					<tbody>
+        						<tr>
+        							<td>Guidewire</td>
+        							<td>Internal</td>
+        							<td>User Based</td>
+        							<td>Java</td>
+        						</tr>
+        					</tbody>
+        				</table>
 					</div>
 				</div>
 			</div>
