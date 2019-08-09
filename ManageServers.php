@@ -15,49 +15,84 @@
 <body>
 <?php
 // define variables and set to empty values
-$AppIDErr = $AppNameErr = $AppTypeErr = $AppCatErr = $AppProgLangErr = "";
-$Application_ID = $Application_Name = $Application_Type = $Application_Category = $Application_Prog_Language = "";
+$Server_ID_Err = $Server_Name_Err = $Server_IP_Address_Err = $Server_Location_Err = $Server_Type_Err = $Server_Util_Type_Err = $Server_CPU_Err = $Server_RAM_Err = $Server_Storage_Allocation_Err = $Server_OS_Err = "";
+$Server_ID = $Server_Name = $Server_IP_Address = $Server_Location = $Server_Type = $Server_Util_Type = $Server_CPU = $Server_RAM = $Server_Storage_Allocation = $Server_OS = "";
 $insertSqlDBStatus = "";
 $ValidationStatus = "Success";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["Application_ID"])) {
-    $AppIDErr = "Application ID is required";
+  if (empty($_POST["Server_ID"])) {
+      $Server_ID_Err = "Server ID is required";
     $ValidationStatus = "Error";
   } else {
-      $Application_ID = test_input($_POST["Application_ID"]);
+      $Server_ID = test_input($_POST["Server_ID"]);
   }
 
-  if (empty($_POST["Application_Name"])) {
-    $AppNameErr = "Application Name is required";
+  if (empty($_POST["Server_Name"])) {
+    $Server_Name_Err = "Server Name is required";
     $ValidationStatus = "Error";
   } else {
-    $Application_Name = test_input($_POST["Application_Name"]);
+    $Server_Name = test_input($_POST["Server_Name"]);
+  }
+  
+  if (empty($_POST["Server_IP_Address"])) {
+      $Server_IP_Address_Err = "Server IP Address is required";
+      $ValidationStatus = "Error";
+  } else {
+      $Server_IP_Address = test_input($_POST["Server_IP_Address"]);
   }
 
-  if (empty($_POST["Application_Type"])) {
-      $AppTypeErr = "Application Type is Required";
+  if (empty($_POST["Server_Type"])) {
+      $Server_Type_Err = "Server Type is Required";
     $ValidationStatus = "Error";
   } else {
-      $Application_Type = test_input($_POST["Application_Type"]);
+      $Server_Type = test_input($_POST["Server_Type"]);
   }
 
-  if (empty($_POST["Application_Category"])) {
-    $AppCatErr = "Application Category is required";
+  if (empty($_POST["Server_Util_Type"])) {
+    $Server_Util_Type_Err = "Server Utilization Type is required";
     $ValidationStatus = "Error";
   } else {
-    $Application_Category = test_input($_POST["Application_Category"]);
+    $Server_Util_Type = test_input($_POST["Server_Util_Type"]);
   }
 
-  if (empty($_POST["Application_Prog_Language"])) {
-    $AppProgLangErr = "Application Programming Language is required";
+  if (empty($_POST["Server_OS"])) {
+    $Server_OS_Err = "Server Operation System is required";
     $ValidationStatus = "Error";
   } else {
-    $Application_Prog_Language = test_input($_POST["Application_Prog_Language"]);
+    $Server_OS = test_input($_POST["Server_OS"]);
+  }
+  
+  if (empty($_POST["Server_Location"])) {
+      $Server_Location_Err = "Server Location is required";
+      $ValidationStatus = "Error";
+  } else {
+      $Server_Location = test_input($_POST["Server_Location"]);
+  }
+  
+  if (empty($_POST["Server_CPU"])) {
+      $Server_CPU_Err = "Server CPU Details are required";
+      $ValidationStatus = "Error";
+  } else {
+      $Server_CPU = test_input($_POST["Server_CPU"]);
+  }
+  
+  if (empty($_POST["Server_RAM"])) {
+      $Server_RAM_Err = "Server RAM details are required";
+      $ValidationStatus = "Error";
+  } else {
+      $Server_RAM = test_input($_POST["Server_OS"]);
+  }
+  
+  if (empty($_POST["Server_Storage_Allocation"])) {
+      $Server_Storage_Allocation_Err = "Server Storage Allocation details are required";
+      $ValidationStatus = "Error";
+  } else {
+      $Server_Storage_Allocation = test_input($_POST["Server_OS"]);
   }
 
   if ($ValidationStatus == "Success"){
-	$insertSqlDBStatus = insert_db($Application_ID,$Application_Name,$Application_Type,$Application_Category,$Application_Prog_Language);
+      $insertSqlDBStatus = insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
 	}
 
 }
@@ -68,7 +103,7 @@ function test_input($data) {
     return $data;
 }
 
-function insert_db($Application_ID,$Application_Name,$Application_Type,$Application_Category,$Application_Prog_Language) 
+function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS) 
 {
 	$servername = "dtemdm01.mysql.database.azure.com";
 	$username = "temdbmadm@dtemdm01";
@@ -88,8 +123,8 @@ function insert_db($Application_ID,$Application_Name,$Application_Type,$Applicat
 	    $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
     	// set the PDO error mode to exception
     	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    	$sql = "INSERT INTO application (Application_ID,Application_Name,Application_Type,Application_Category,Application_Prog_Language)
-    	VALUES ('$Application_ID','$Application_Name','$Application_Type','$Application_Category','$Application_Prog_Language')";
+    	$sql = "INSERT INTO server (Server_ID,Server_Name,Server_IP_Address,Server_Location,Server_Type,Server_Util_Type,Server_CPU,Server_RAM,Server_Storage_Allocation,Server_OS)
+    	VALUES ('$Server_ID','$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type','$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
     	// use exec() because no results are returned
     	$conn->exec($sql);
     	$result="Success";
@@ -157,67 +192,57 @@ function insert_db($Application_ID,$Application_Name,$Application_Type,$Applicat
 	    			<div class="form-group">
 	      				<label for="Server ID">Server ID:</label>
 	      				<input type="text" class="form-control" id="Server_ID" placeholder="Enter Server ID" name="Server_ID">
-	      				<p><span class="error">* <?php echo $ServerIDErr;?></span></p>
+	      				<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
 	      				<label for="Server Name">Server Name:</label>
 	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name">
-	      				<p><span class="error">* <?php echo $AppNameErr;?></span></p>
+	      				<p><span class="error">* <?php echo $Server_Name_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
-	      				<label for="Server IP Addres">Server Name:</label>
+	      				<label for="Server IP Address">Server Name:</label>
 	      				<input type="text" class="form-control" id="Server_IP_Address" placeholder="Enter Server IP Address" name="Server_IP_Address">
-	      				<p><span class="error">* <?php echo $AppNameErr;?></span></p>
+	      				<p><span class="error">* <?php echo $Server_IP_Address_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
 	      				<label for="Server Type">Server Type:</label>
 	      				<input type="text" class="form-control" id="Server_Type" placeholder="Enter Server Type" name="Server_Type">
-	      				<p><span class="error">* <?php echo $AppTypeErr;?></span></p>
+	      				<p><span class="error">* <?php echo $Server_Type_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
 	      				<label for="Server Utilization Type">Server Utilization Type:</label>
 	      				<input type="text" class="form-control" id="Server_Util_Type" placeholder="Enter Server Utilization Type" name="Server_Util_Type">
-	      				<p><span class="error">* <?php echo $AppCatErr;?></span></p>
+	      				<p><span class="error">* <?php echo $Server_Util_Type_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
 	      				<label for="Server Operating System">Server Operating System:</label>
 	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Operating System" name="Server_OS">
-	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	      				<p><span class="error">* <?php echo $Server_OS_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
 	      				<label for="Server Location">Server Location:</label>
 	      				<input type="text" class="form-control" id="Server_Location" placeholder="Enter Server Location" name="Server_Location">
-	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	      				<p><span class="error">* <?php echo $Server_Location_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
 	      				<label for="Server CPU">Server CPUs:</label>
-	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server CPUs" name="Server_CPU">
-	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	      				<input type="text" class="form-control" id="Server_CPU" placeholder="Enter Server CPUs" name="Server_CPU">
+	      				<p><span class="error">* <?php echo $Server_CPU_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
 	      				<label for="Server RAM">Server RAM Allocation System:</label>
-	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server RAM Allocation" name="Server_RAM">
-	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	      				<input type="text" class="form-control" id="Server_RAM" placeholder="Enter Server RAM Allocation" name="Server_RAM">
+	      				<p><span class="error">* <?php echo $Server_RAM_Err;?></span></p>
 	    			</div>
 	    			<div class="form-group">
 	      				<label for="Server Storage Allocation">Server Storage Allocation:</label>
-	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation">
-	      				<p><span class="error">* <?php echo $AppProgLangErr;?></span></p>
+	      				<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation">
+	      				<p><span class="error">* <?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    			</div>
 	    			<button type="submit" class="btn btn-primary">Submit</button>
 	    		</form>
 	    		<?php
-					echo "<h2>Your Input:</h2>";
-					echo $Application_ID;
-					echo "<br>";
-					echo $Application_Name;
-					echo "<br>";
-					echo $Application_Category;
-					echo "<br>";
-					echo $Application_Type;
-					echo "<br>";
-					echo $Application_Prog_Language;
-					echo "<br>";
+					echo "<h2>Result</h2>";
 					echo $insertSqlDBStatus;
 				?>
 			</div>
