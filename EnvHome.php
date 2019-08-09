@@ -24,19 +24,19 @@
 				<nav class="navbar navbar-expand-sm justify-content-right navbar-light top-fixed">
 				  <ul class="navbar-nav">
 				    <li class="nav-item">
-				      <a class="nav-link" href="HomePage.Html"><span class="badge badge-pill badge-primary">Home</span></a>
+				      <a class="nav-link" href="HomePage.Html"><span class="badge badge-pill badge-secondary">Home</span></a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">Environments</span></a>
+				      <a class="nav-link" href="EnvHome.php"><span class="badge badge-pill badge-primary">Environments</span></a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">Applications</span></a>
+				      <a class="nav-link" href="AppHome.php"><span class="badge badge-pill badge-secondary">Applications</span></a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">Servers</span></a>
+				      <a class="nav-link" href="SerHome.php"><span class="badge badge-pill badge-secondary">Servers</span></a>
 				    </li>
 				    <li class="nav-item">
-				      <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">Health Check</span></a>
+				      <a class="nav-link" href="HlcHome.php"><span class="badge badge-pill badge-secondary">Health Check</span></a>
 				    </li>
 				  </ul>
 				</nav>
