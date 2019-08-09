@@ -185,6 +185,22 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 				<hr class="d-sm-none">
 			</div>
 			<div class="col-sm-10">
+			<div class="container mt-3">
+  				<h2>Toggleable Tabs</h2>
+  				<br>
+                <!-- Nav tabs -->
+  				<ul class="nav nav-tabs">
+    				<li class="nav-item">
+      					<a class="nav-link active" data-toggle="tab" href="#Add">Add</a>
+    				</li>
+    				<li class="nav-item">
+      					<a class="nav-link" data-toggle="tab" href="#Update">Update</a>
+    				</li>
+    				<li class="nav-item">
+      					<a class="nav-link" data-toggle="tab" href="#remove">Remove</a>
+    				</li>
+  				</ul>
+			
 				<div class="tab-content">
 					<div class="tab-pane active container" id="Add">
 						<h1> Please enter details below and press submit</h1>
@@ -254,6 +270,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    			</div>
 	    		</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </body>
