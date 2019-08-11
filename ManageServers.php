@@ -218,7 +218,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
         	      				<p><span class="error">* <?php echo $Server_Name_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
-        	      				<label for="Server IP Address">Server Name:</label>
+        	      				<label for="Server IP Address">Server IP Address:</label>
         	      				<input type="text" class="form-control" id="Server_IP_Address" placeholder="Enter Server IP Address" name="Server_IP_Address">
         	      				<p><span class="error">* <?php echo $Server_IP_Address_Err;?></span></p>
         	    			</div>
