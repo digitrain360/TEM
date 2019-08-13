@@ -48,7 +48,7 @@
 			<div class="col-sm-2">
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
-						<a class="nav-link" href="ManageServers.php">ManageServers</a>
+						<a class="nav-link" href="ManageServers.php">Manage Servers</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Servers Report</a>
