@@ -176,7 +176,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 			<div class="col-sm-2">
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
-						<a class="nav-link active" href="ManageServers.php">ManageServers</a>
+						<a class="nav-link active" href="ManageServers.php">Manage Servers</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Servers Report</a>
