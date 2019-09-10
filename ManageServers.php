@@ -275,9 +275,6 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    				<h1> Enter Server ID or Name and Press Search</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
-				 		<?php 
-				 			  $Update_Search_Result = "NotSearched";
-				 		?>
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
                                 if ($Update_Search_Result == "Success"){
