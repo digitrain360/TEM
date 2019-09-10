@@ -348,42 +348,42 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name" value=<?php $Server_Name?> <?php echo $disabled; ?>>
+        	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name" value=<?php echo $Server_Name ?> <?php echo $disabled; ?>>
         	      				<p><span class="error"><?php echo $Server_Name_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server IP Address">Server IP Address:</label>
-        	      				<input type="text" class="form-control" id="Server_IP_Address" placeholder="Enter Server IP Address" name="Server_IP_Address" value=<?php $Server_IP_Address ?> <?php echo $disabled; ?>>
+        	      				<input type="text" class="form-control" id="Server_IP_Address" placeholder="Enter Server IP Address" name="Server_IP_Address" value=<?php echo $Server_IP_Address ?> <?php echo $disabled; ?>>
         	      				<p><span class="error"><?php echo $Server_IP_Address_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Type">Server Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Type" placeholder="Enter Server Type" name="Server_Type" value=<?php $Server_Type ?> <?php echo $disabled; ?>>
+        	      				<input type="text" class="form-control" id="Server_Type" placeholder="Enter Server Type" name="Server_Type" value=<?php echo $Server_Type ?> <?php echo $disabled; ?>>
         	      				<p><span class="error"><?php echo $Server_Type_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Utilization Type">Server Utilization Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Util_Type" placeholder="Enter Server Utilization Type" name="Server_Util_Type" value=<?php $Server_Util_Type ?> <?php echo $disabled; ?>>
+        	      				<input type="text" class="form-control" id="Server_Util_Type" placeholder="Enter Server Utilization Type" name="Server_Util_Type" value=<?php echo $Server_Util_Type ?> <?php echo $disabled; ?>>
         	      				<p><span class="error"><?php echo $Server_Util_Type_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Operating System">Server Operating System:</label>
-        	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Operating System" name="Server_OS" value=<?php $Server_OS ?> <?php echo $disabled; ?>>
+        	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Operating System" name="Server_OS" value=<?php echo $Server_OS ?> <?php echo $disabled; ?>>
         	      				<p><span class="error"><?php echo $Server_OS_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Location">Server Location:</label>
-        	      				<input type="text" class="form-control" id="Server_Location" placeholder="Enter Server Location" name="Server_Location" value=<?php $Server_Location ?> <?php echo $disabled; ?>>
+        	      				<input type="text" class="form-control" id="Server_Location" placeholder="Enter Server Location" name="Server_Location" value=<?php echo $Server_Location ?> <?php echo $disabled; ?>>
         	      				<p><span class="error"><?php echo $Server_Location_Err;?></span></p>
         	    			</div>
 			    			<div class="form-group">
 	    		  				<label for="Server CPU">Server CPUs:</label>
-	      						<input type="text" class="form-control" id="Server_CPU" placeholder="Enter Server CPUs" name="Server_CPU" value=<?php $Server_CPU ?> <?php echo $disabled; ?>>
+	      						<input type="text" class="form-control" id="Server_CPU" placeholder="Enter Server CPUs" name="Server_CPU" value="<?php echo $Server_CPU ?>" <?php echo $disabled; ?>>
 	      						<p><span class="error"><?php echo $Server_CPU_Err;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server RAM">Server RAM Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_RAM" placeholder="Enter Server RAM Allocation" name="Server_RAM"  value=<?php $Server_RAM ?><?php echo $disabled; ?>>
+	      						<input type="text" class="form-control" id="Server_RAM" placeholder="Enter Server RAM Allocation" name="Server_RAM"  value="<?php echo $Server_RAM ?>" <?php echo $disabled; ?>>
 	      						<p><span class="error"><?php echo $Server_RAM_Err;?></span></p>
 	    					</div>
 	    					<div class="form-group">
