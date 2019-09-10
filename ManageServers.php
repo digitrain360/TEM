@@ -21,80 +21,81 @@ $insertSqlDBStatus = "";
 $ValidationStatus = "Success";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["Server_ID"])) {
-      $Server_ID_Err = "Server ID is required";
-    $ValidationStatus = "Error";
-  } else {
-      $Server_ID = test_input($_POST["Server_ID"]);
-  }
+    if ($_POST['submit']=="AddServer"){
+        if (empty($_POST["Server_ID"])) {
+            $Server_ID_Err = "Server ID is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_ID = test_input($_POST["Server_ID"]);
+        }
 
-  if (empty($_POST["Server_Name"])) {
-    $Server_Name_Err = "Server Name is required";
-    $ValidationStatus = "Error";
-  } else {
-    $Server_Name = test_input($_POST["Server_Name"]);
-  }
+        if (empty($_POST["Server_Name"])) {
+            $Server_Name_Err = "Server Name is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Name = test_input($_POST["Server_Name"]);
+        }
   
-  if (empty($_POST["Server_IP_Address"])) {
-      $Server_IP_Address_Err = "Server IP Address is required";
-      $ValidationStatus = "Error";
-  } else {
-      $Server_IP_Address = test_input($_POST["Server_IP_Address"]);
-  }
+        if (empty($_POST["Server_IP_Address"])) {
+            $Server_IP_Address_Err = "Server IP Address is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_IP_Address = test_input($_POST["Server_IP_Address"]);
+        }
 
-  if (empty($_POST["Server_Type"])) {
-      $Server_Type_Err = "Server Type is Required";
-    $ValidationStatus = "Error";
-  } else {
-      $Server_Type = test_input($_POST["Server_Type"]);
-  }
+        if (empty($_POST["Server_Type"])) {
+            $Server_Type_Err = "Server Type is Required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Type = test_input($_POST["Server_Type"]);
+        }
 
-  if (empty($_POST["Server_Util_Type"])) {
-    $Server_Util_Type_Err = "Server Utilization Type is required";
-    $ValidationStatus = "Error";
-  } else {
-    $Server_Util_Type = test_input($_POST["Server_Util_Type"]);
-  }
-
-  if (empty($_POST["Server_OS"])) {
-    $Server_OS_Err = "Server Operation System is required";
-    $ValidationStatus = "Error";
-  } else {
-    $Server_OS = test_input($_POST["Server_OS"]);
-  }
-  
-  if (empty($_POST["Server_Location"])) {
-      $Server_Location_Err = "Server Location is required";
-      $ValidationStatus = "Error";
-  } else {
-      $Server_Location = test_input($_POST["Server_Location"]);
-  }
-  
-  if (empty($_POST["Server_CPU"])) {
-      $Server_CPU_Err = "Server CPU Details are required";
-      $ValidationStatus = "Error";
-  } else {
-      $Server_CPU = test_input($_POST["Server_CPU"]);
-  }
-  
-  if (empty($_POST["Server_RAM"])) {
-      $Server_RAM_Err = "Server RAM details are required";
-      $ValidationStatus = "Error";
-  } else {
-      $Server_RAM = test_input($_POST["Server_RAM"]);
-  }
-  
-  if (empty($_POST["Server_Storage_Allocation"])) {
-      $Server_Storage_Allocation_Err = "Server Storage Allocation details are required";
-      $ValidationStatus = "Error";
-  } else {
-      $Server_Storage_Allocation = test_input($_POST["Server_Storage_Allocation"]);
-  }
-
-  if ($ValidationStatus == "Success"){
-      $insertSqlDBStatus = insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
-	}
-
+        if (empty($_POST["Server_Util_Type"])) {
+            $Server_Util_Type_Err = "Server Utilization Type is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Util_Type = test_input($_POST["Server_Util_Type"]);
+        }
+        
+        if (empty($_POST["Server_OS"])) {
+            $Server_OS_Err = "Server Operation System is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_OS = test_input($_POST["Server_OS"]);
+        }
+          
+        if (empty($_POST["Server_Location"])) {
+            $Server_Location_Err = "Server Location is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Location = test_input($_POST["Server_Location"]);
+        }
+          
+        if (empty($_POST["Server_CPU"])) {
+            $Server_CPU_Err = "Server CPU Details are required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_CPU = test_input($_POST["Server_CPU"]);
+        }
+          
+        if (empty($_POST["Server_RAM"])) {
+            $Server_RAM_Err = "Server RAM details are required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_RAM = test_input($_POST["Server_RAM"]);
+        }
+          
+        if (empty($_POST["Server_Storage_Allocation"])) {
+            $Server_Storage_Allocation_Err = "Server Storage Allocation details are required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Storage_Allocation = test_input($_POST["Server_Storage_Allocation"]);
+        }
+        
+        if ($ValidationStatus == "Success"){
+            $insertSqlDBStatus = insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
+        }
+    }
 }
 function test_input($data) {
     $data = trim($data);
@@ -257,7 +258,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation">
 	      						<p><span class="error">* <?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    					</div>
-	    					<button type="submit" class="btn btn-primary">Submit</button>
+	    					<button type="submit" class="btn btn-primary" name="btn_submit" value="AddServer">Add Server</button>
 	    					<?php
 					           echo "<h2>Result</h2>";
 					           echo $insertSqlDBStatus;
@@ -319,8 +320,8 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation">
 	      						<p><span class="error">* <?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    					</div>
-	    					<button type="button" id="UpdateSearch" class="btn btn-primary">Search</button>
-	    					<button type="button" id="Update" class="btn btn-primary" disabled>Update</button>
+	    					<button type="button" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch">Search</button>
+	    					<button type="button" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" disabled>Update</button>
 				           </form>
 					</div>
 	    			<div class="tab-pane container fade" id="Remove">
@@ -370,8 +371,8 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
 	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation" disabled>
 	    					</div>
-	    					<button type="button" id="RemoveSearch" class="btn btn-primary">Search</button>
-	    					<button type="button" id="Remove" class="btn btn-primary" disabled>Remove</button>
+	    					<button type="button" name="btn_submit" id="RemoveSearch" class="btn btn-primary" value="RemoveSearch">Search</button>
+	    					<button type="button" name="btn_submit" id="RemoveServer" class="btn btn-primary" value="RemoveServer" disabled>Remove</button>
 				           </form>
 	    			</div>
 	    		</div>
