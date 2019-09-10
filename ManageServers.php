@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($_POST['btn_submit']=="UpdateSearch"){
-        $disabled = "";
+        $Update_Search_Result = "Success";
     }
 }
 function test_input($data) {
@@ -274,9 +274,11 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    				<h1> Enter Server ID or Name and Press Search</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
-				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
 				 			    $Update_Search_Result = "NotSearched";
+				 			 ?>
+				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+				 			<?php 
                                 if ($Update_Search_Result == "Success"){
                                     $disabled = "";
                                 } else{
@@ -335,7 +337,12 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    					</div>
 	    					<button type="button" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch">Search</button>
 	    					<button type="button" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" disabled>Update</button>
-				           </form>
+	    					<?php
+					           echo "<h4>Result</h4>";
+					           echo $disabled;
+					           echo $Update_Search_Result;
+				            ?>
+				          </form>
 					</div>
 	    			<div class="tab-pane container fade" id="Remove">
 	    				<h5> Enter ID or Name of the Server to be removed and Press Search</h5>
