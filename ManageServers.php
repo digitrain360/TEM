@@ -267,7 +267,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
   				</ul>
 			
 				<div class="tab-content">
-					<div class="tab-pane active container" id="Add">
+					<div class="tab-pane fade container" id="Add">
 						<h1> Please enter details below and press submit</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
@@ -329,7 +329,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
 				            ?>
 	    				</form>
 	    			</div>
-	    			<div class="tab-pane container fade" id="Update">
+	    			<div class="tab-pane container active" id="Update">
 	    				<h1> Enter Server ID or Name and Press Search</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
