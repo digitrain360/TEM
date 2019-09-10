@@ -99,6 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($_POST['btn_submit']=="UpdateSearch"){
+        $insertSqlDBStatus = "Inside Update Search"
         $Update_Search_Result = "Success";
     }
 }
@@ -274,9 +275,6 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    				<h1> Enter Server ID or Name and Press Search</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
-				 			<?php 
-				 			    $Update_Search_Result = "NotSearched";
-				 			 ?>
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
                                 if ($Update_Search_Result == "Success"){
@@ -339,6 +337,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    					<button type="button" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" disabled>Update</button>
 	    					<?php
 					           echo "<h4>Result</h4>";
+					           echo $insertSqlDBStatus;
 					           echo $disabled;
 					           echo $Update_Search_Result;
 				            ?>
