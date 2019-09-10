@@ -48,15 +48,11 @@
 			<div class="col-sm-2">
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
-						<a class="nav-link active" href="#">Current Allocations</a>
-					</li>
+						<a class="nav-link" href="AddApplication.php">Manage Applications</a>
+					</li>					
 					<li class="nav-item">
-						<a class="nav-link" href="#">New Allocation Request</a>
+						<a class="nav-link active" href="#">Applications Report</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Environment Knowledge</a>
-					</li>
-					
 				</ul>
 				<hr class="d-sm-none">
 			</div>

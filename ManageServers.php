@@ -265,7 +265,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    				</form>
 	    			</div>
 	    			<div class="tab-pane container fade" id="Update">
-	    									<h1> Please enter details below and press submit</h1>
+	    				<h1> Enter Server ID or Name and Press Search</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
@@ -319,11 +319,8 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation">
 	      						<p><span class="error">* <?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    					</div>
-	    					<button type="submit" class="btn btn-primary">Submit</button>
-	    					<?php
-					           echo "<h2>Result</h2>";
-					           echo $insertSqlDBStatus;
-				            ?>
+	    					<button type="button" id="UpdateSearch" class="btn btn-primary">Search</button>
+	    					<button type="button" id="Update" class="btn btn-primary" disabled>Update</button>
 				           </form>
 	    			</div>
 	    			<div class="tab-pane container fade" id="Remove">
