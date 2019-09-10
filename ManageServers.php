@@ -21,7 +21,9 @@ $insertSqlDBStatus = "";
 $ValidationStatus = "Success";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $insertSqlDBStatus = "Inside POST";
     if ($_POST['submit']=="AddServer"){
+        $insertSqlDBStatus ="Inside AddServer";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
             $ValidationStatus = "Error";
