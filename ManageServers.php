@@ -22,7 +22,7 @@ $ValidationStatus = "Success";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insertSqlDBStatus = "Inside POST";
-    if ($_POST['submit']=="AddServer"){
+    if ($_POST['btn_submit']=="AddServer"){
         $insertSqlDBStatus ="Inside AddServer";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
@@ -262,7 +262,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    					</div>
 	    					<button type="submit" class="btn btn-primary" name="btn_submit" value="AddServer">Add Server</button>
 	    					<?php
-					           echo "<h2>Result</h2>";
+					           echo "<h4>Result</h4>";
 					           echo $insertSqlDBStatus;
 				            ?>
 	    				</form>
