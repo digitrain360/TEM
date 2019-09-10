@@ -333,8 +333,8 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation" <?php echo $disabled; ?>>
 	      						<p><span class="error"><?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    					</div>
-	    					<button type="button" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch">Search</button>
-	    					<button type="button" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" disabled>Update</button>
+	    					<button type="submit" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch">Search</button>
+	    					<button type="submit" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" disabled>Update</button>
 	    					<?php
 					           echo "<h4>Result</h4>";
 					           echo $insertSqlDBStatus;
