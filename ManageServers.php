@@ -99,8 +99,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($_POST['btn_submit']=="UpdateSearch"){
-        $insertSqlDBStatus = "Inside Update Search";
-        $Update_Search_Result = "Success";
+        if (empty($_POST["Server_ID"])) {
+            $Server_ID_Err = "Server ID is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_ID = test_input($_POST["Server_ID"]);
+        }
+        
+        if ($ValidationStatus == "Success"){
+            $Update_Search_Result = Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);;
+        }
     }
 }
 function test_input($data) {
@@ -144,6 +152,56 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	$conn = null;
 	return $result;
 }
+
+function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
+{
+    $servername = "dtemdm01.mysql.database.azure.com";
+    $username = "temdbmadm@dtemdm01";
+    $password = "waheguru@1112";
+    $options = array(
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+        PDO::MYSQL_ATTR_SSL_CA => '/SSL/BaltimoreCyberTrustRoot.crt',
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+    );
+    
+    /*	$servername = "localhost";
+     $username = "root";
+     $password = "temjul19";
+     $dbname = "dbtemd01";*/
+    $result = "";
+    try {
+        $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT Server_ID,Server_Name,Server_IP_Address,Server_Location,Server_Type,Server_Util_Type,Server_CPU,Server_RAM,Server_Storage_Allocation,Server_OS FROM server
+    	Where Server_ID = '$Server_ID'";
+        //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type','$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
+        // use exec() because no results are returned
+        $result=$conn->exec($sql);
+        if ($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            $Server_ID = $row["Server_ID"];
+            $Server_Name = $row["Server_Name"];
+            $Server_IP_Address = $row["Server_IP_Address"];
+            $Server_Location = $row["Server_Location"];
+            $Server_Type = $row["Server_Type"];
+            $Server_Util_Type = $row["Server_Util_Type"];
+            $Server_CPU = $row["Server_CPU"];
+            $Server_RAM = $row["Server_RAM"];
+            $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
+            $Server_OS = $row["Server_OS"];
+        }
+        $retrieveresult = "Success";
+    }
+    catch(PDOException $e)
+    {
+        $result= $sql . "<br>" . $e->getMessage();
+    }
+    
+    $conn = null;
+    return $retrieveresult;
+}
+
 ?>
  <!--<div class="jumbotron text-center bg-primary">
 		<h1>DIGITRAIN360</h1>
@@ -290,8 +348,8 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name">
-        	      				<p><span class="error">* <?php echo $Server_Name_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name" <?php echo $disabled; ?>>
+        	      				<p><span class="error"><?php echo $Server_Name_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server IP Address">Server IP Address:</label>
