@@ -177,8 +177,8 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
         $result=$conn->exec($sql);
+        $rowcount = $result->num_rows;
         if ($result->num_rows > 0){
-            $rowcount = $result->num_rows;
             $row = $result->fetch_assoc();
             $Server_ID = $row["Server_ID"];
             $Server_Name = $row["Server_Name"];
