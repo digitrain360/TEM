@@ -173,9 +173,8 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT Server_ID,Server_Name,Server_IP_Address,Server_Location,Server_Type,Server_Util_Type,Server_CPU,Server_RAM,Server_Storage_Allocation,Server_OS FROM server
-    	Where Server_ID = '$Server_ID'";
-        //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type','$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
+        $sql = "SELECT Server_ID, Server_Name, Server_IP_Address, Server_Location, Server_Type, Server_Util_Type, Server_CPU, Server_RAM, Server_Storage_Allocation, Server_OS FROM server Where Server_ID = $Server_ID";
+        //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
         $result=$conn->exec($sql);
         if ($result->num_rows > 0){
