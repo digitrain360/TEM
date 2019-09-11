@@ -192,7 +192,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
             $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
             $Server_OS = $row["Server_OS"];
         }
-        $retrieveresult = "Success " + $rowcount;
+        $retrieveresult = "Success " . "<br>" . $sql . "<br>" . $rowcount;
     }
     catch(PDOException $e)
     {
@@ -396,7 +396,6 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
 	    					<button type="submit" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" disabled>Update</button>
 	    					<?php
 					           echo "<h4>Result</h4>";
-					           echo $insertSqlDBStatus;
 					           echo $disabled;
 					           echo $Update_Search_Result;
 					           echo $Server_ID;
