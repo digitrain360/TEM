@@ -388,7 +388,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value=<?php $Server_Storage_Allocation ?> <?php echo $disabled; ?>>
+	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value="<?php $Server_Storage_Allocation ?>" <?php echo $disabled; ?>>
 	      						<p><span class="error"><?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    					</div>
 	    					<button type="submit" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch">Search</button>
@@ -398,6 +398,16 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
 					           echo $insertSqlDBStatus;
 					           echo $disabled;
 					           echo $Update_Search_Result;
+					           echo $Server_ID;
+					           echo $Server_Name;
+					           echo $Server_IP_Address;
+					           echo $Server_Location;
+					           echo $Server_Type;
+					           echo $Server_Util_Type;
+					           echo $Server_CPU;
+					           echo $Server_RAM;
+					           echo $Server_Storage_Allocation;
+					           echo $Server_OS;
 				            ?>
 				          </form>
 					</div>
