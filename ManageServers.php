@@ -179,6 +179,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         // use exec() because no results are returned
         $result=$conn->exec($sql);
         if ($result->num_rows > 0){
+            $rowcount = $result->num_rows;
             $row = $result->fetch_assoc();
             $Server_ID = $row["Server_ID"];
             $Server_Name = $row["Server_Name"];
@@ -191,7 +192,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
             $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
             $Server_OS = $row["Server_OS"];
         }
-        $retrieveresult = "Success";
+        $retrieveresult = "Success " + $rowcount;
     }
     catch(PDOException $e)
     {
