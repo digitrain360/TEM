@@ -191,7 +191,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
             $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
             $Server_OS = $row["Server_OS"];
         }
-        $retrieveresult = "Success " . "<br>" . $sql . "<br>" . $rowcount;
+        $retrieveresult = "<br>" . $sql . $rowcount;
     }
     catch(PDOException $e)
     {
