@@ -182,7 +182,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         if ($ValidationStatus == "Success"){
+            $UpdateSqlDBStatus = "Validation Successfull";
             $UpdateSqlDBStatus = Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
+        } else {
+            $UpdateSqlDBStatus = "Validation Failed";
         }
     }
     
