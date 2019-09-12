@@ -178,8 +178,8 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
         $statement = $conn.prepare($sql);
-        $statement.execute();
-        $row = $statement->fetch();
+        $result = $statement.execute();
+        $row = $result;
         $rowcount = 1;
         //$rowcount = $row['total_rows'];
         //$result=$conn->exec($sql);
@@ -201,7 +201,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
     }
     catch(PDOException $e)
     {
-        $result= $sql . "<br>" . $e->getMessage();
+        $retrieveresult= $sql . "<br>" . $e->getMessage();
     }
     
     $conn = null;
