@@ -179,8 +179,8 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         $rowcount = 1;
         $result=$conn->exec($sql);
         /*$rowcount = $result->rowcount; */
-        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount;
-        if ($rowcount > 0){
+        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br>" . $result;
+       /* if ($rowcount > 0){
             $row = $result->fetch();
             $Server_ID = $row["Server_ID"];
             $Server_Name = $row["Server_Name"];
@@ -192,7 +192,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
             $Server_RAM = $row["Server_RAM"];
             $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
             $Server_OS = $row["Server_OS"];
-        }
+        }*/
     }
     catch(PDOException $e)
     {
