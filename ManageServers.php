@@ -179,7 +179,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         // use exec() because no results are returned
         $statement = $conn.prepare($sql);
         $statement.execute();
-        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        $row = $statement->fetch();
         $rowcount = 1;
         //$rowcount = $row['total_rows'];
         //$result=$conn->exec($sql);
