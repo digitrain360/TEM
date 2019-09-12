@@ -179,7 +179,8 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         // use exec() because no results are returned
         $rowcount = 1;
         $result=$conn->exec($sql);
-        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $result;
+        $row = $result->fetchAll();
+        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $row;
        /* if ($rowcount > 0){
             $row = $result->fetch();
             $Server_ID = $row["Server_ID"];
