@@ -168,7 +168,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
      $username = "root";
      $password = "temjul19";
      $dbname = "dbtemd01";*/
-    $result = "";
+    //$result = "";
     try {
         $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
         // set the PDO error mode to exception
@@ -177,10 +177,13 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         $sql = "SELECT * FROM server Where Server_ID = $Server_ID";
         //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
-        $rowcount = 1;
-        $result=$conn->exec($sql);
+        $statement = $conn.prepare($sql);
+        $statement.execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        $rowcount = $row['total_rows'];
+        //$result=$conn->exec($sql);
         /*$rowcount = $result->rowcount; */
-        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br>" . $result;
+        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $row;
        /* if ($rowcount > 0){
             $row = $result->fetch();
             $Server_ID = $row["Server_ID"];
