@@ -180,7 +180,8 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         $statement = $conn.prepare($sql);
         $statement.execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
-        $rowcount = $row['total_rows'];
+        $rowcount = 1;
+        //$rowcount = $row['total_rows'];
         //$result=$conn->exec($sql);
         /*$rowcount = $result->rowcount; */
         $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $row;
