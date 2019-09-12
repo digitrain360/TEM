@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($_POST['btn_submit']=="UpdateServer"){
-        $UpdateSqlDBStatus = "Inside Update Server"
+        $UpdateSqlDBStatus = "Inside Update Server";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
             $ValidationStatus = "Error";
