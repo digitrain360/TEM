@@ -176,13 +176,12 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         $sql = "SELECT Server_ID, Server_Name, Server_IP_Address, Server_Location, Server_Type, Server_Util_Type, Server_CPU, Server_RAM, Server_Storage_Allocation, Server_OS FROM server Where Server_ID = $Server_ID";
         //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
-        $rowcount = 0;
+        $rowcount = 1;
         $result=$conn->exec($sql);
-        $rowcount = $result->rowcount;
+        /*$rowcount = $result->rowcount; */
         $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount;
-        
-        if ($result->num_rows > 0){
-            $row = $result->fetch_assoc();
+        if ($rowcount > 0){
+            $row = $result->fetch();
             $Server_ID = $row["Server_ID"];
             $Server_Name = $row["Server_Name"];
             $Server_IP_Address = $row["Server_IP_Address"];
