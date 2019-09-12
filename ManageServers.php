@@ -178,9 +178,23 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
         $rowcount = 1;
-        $result=$conn->exec($sql);
+        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:";
+        foreach($conn->query($sql) as $row){
+            $Server_ID = $row["Server_ID"];
+            $Server_Name = $row["Server_Name"];
+            $Server_IP_Address = $row["Server_IP_Address"];
+            $Server_Location = $row["Server_Location"];
+            $Server_Type = $row["Server_Type"];
+            $Server_Util_Type = $row["Server_Util_Type"];
+            $Server_CPU = $row["Server_CPU"];
+            $Server_RAM = $row["Server_RAM"];
+            $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
+            $Server_OS = $row["Server_OS"];
+            $retrieveresult = $retrieveresult. "<br>" . $Server_ID . $Server_Name . $Server_IP_Address;
+            //$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS
+        }
        // $row = $result->fetchAll();
-        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $result;
+//        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $result;
        /* if ($rowcount > 0){
             $row = $result->fetch();
             $Server_ID = $row["Server_ID"];
