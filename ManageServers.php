@@ -19,9 +19,12 @@ $Server_ID_Err = $Server_Name_Err = $Server_IP_Address_Err = $Server_Location_Er
 $Server_ID = $Server_Name = $Server_IP_Address = $Server_Location = $Server_Type = $Server_Util_Type = $Server_CPU = $Server_RAM = $Server_Storage_Allocation = $Server_OS = "";
 $insertSqlDBStatus = "";
 $ValidationStatus = "Success";
+$addPaneActive = "active";
+$updatePaneActive = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['btn_submit']=="AddServer"){
+        $addPaneActive = "active";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
             $ValidationStatus = "Error";
@@ -97,6 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($_POST['btn_submit']=="UpdateSearch"){
+        $updatePaneActive = "active";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
             $ValidationStatus = "Error";
@@ -110,6 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($_POST['btn_submit']=="UpdateServer"){
+        $updatePaneActive = "active";
         $UpdateSqlDBStatus = "Inside Update Server";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
@@ -379,10 +384,10 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                 <!-- Nav tabs -->
   				<ul class="nav nav-tabs">
     				<li class="nav-item">
-      					<a class="nav-link" data-toggle="tab" href="#Add">Add</a>
+      					<a class="nav-link <?php echo $addPaneActive?>" data-toggle="tab" href="#Add">Add</a>
     				</li>
     				<li class="nav-item">
-      					<a class="nav-link active" data-toggle="tab" href="#Update">Update</a>
+      					<a class="nav-link <?php echo $updatePaneActive?>" data-toggle="tab" href="#Update">Update</a>
     				</li>
     				<li class="nav-item">
       					<a class="nav-link" data-toggle="tab" href="#Remove">Remove</a>
@@ -390,7 +395,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
   				</ul>
 			
 				<div class="tab-content">
-					<div class="tab-pane fade container" id="Add">
+					<div class="tab-pane <?php echo $addPaneActive?> container" id="Add">
 					
 					    <?php 
 					       if ($insertSqlDBStatus == "Success"){
@@ -465,7 +470,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 				            ?>
 	    				</form>
 	    			</div>
-	    			<div class="tab-pane container active" id="Update">
+	    			<div class="tab-pane container <?php echo $updatePaneActive?>" id="Update">
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
