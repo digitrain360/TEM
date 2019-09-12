@@ -176,6 +176,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         $sql = "SELECT Server_ID, Server_Name, Server_IP_Address, Server_Location, Server_Type, Server_Util_Type, Server_CPU, Server_RAM, Server_Storage_Allocation, Server_OS FROM server Where Server_ID = $Server_ID";
         //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
+        $rowcount = 0;
         $result=$conn->exec($sql);
         $rowcount = $result->num_rows;
         $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount;
