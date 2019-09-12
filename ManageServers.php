@@ -156,6 +156,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 
 function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
 {
+    global $Server_ID, $Server_Name, $Server_IP_Address, $Server_Location, $Server_Type, $Server_Util_Type, $Server_CPU, $Server_RAM, $Server_Storage_Allocation, $Server_OS;
     $servername = "dtemdm01.mysql.database.azure.com";
     $username = "temdbmadm@dtemdm01";
     $password = "waheguru@1112";
