@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($ValidationStatus == "Success"){
             $Update_Search_Result = Retrieve_Server_Details($Server_ID);
-            $DataRetrieved = $Server_Name . " " . $Server_IP_Address . " " . $Server_Location . " " . $Server_Type . " " . $Server_Util_Type . " " . $Server_CPU . " " . $Server_RAM . " " . $Server_Storage_Allocation . " " . $Server_OS;
+            //$DataRetrieved = $Server_Name . " " . $Server_IP_Address . " " . $Server_Location . " " . $Server_Type . " " . $Server_Util_Type . " " . $Server_CPU . " " . $Server_RAM . " " . $Server_Storage_Allocation . " " . $Server_OS;
         }
     }
 }
@@ -349,20 +349,24 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
 	    				</form>
 	    			</div>
 	    			<div class="tab-pane container active" id="Update">
-	    				<h1> Enter Server ID and Press Search</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
                                 if ($Update_Search_Result == "Success"){
                                     $disabled = "";
+                                    $Server_ID_disabled = "disabled";
+                                    $UserMsg = "Make changes to the attributes as needed Server ID and Press Update";
                                 } else{
                                     $disabled = 'disabled';
+                                    $Server_ID_disabled = "";
+                                    $UserMsg = "Enter Server ID and Press Search";
                                 }
                             ?>
+                            <h4><?php echo $UserMsg?></h4>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
-	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>">
+	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>" <?php echo $Server_ID_disabled?>>
 	      						<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
 	    					</div>
         	    			<div class="form-group">
