@@ -467,7 +467,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                                         $Server_ID_disabled = "";
                                         $Search_btn_disabled = "";
                                         $Update_btn_disabled = "disabled";
-                                        $UserMsg = "Enter Server ID and Press Search";
+                                        $UserMsg = "Update Result: " . $UpdateSqlDBStatus;
                                     } else{
                                         $disabled = 'disabled';
                                         $Server_ID_disabled = "";
@@ -478,6 +478,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                                 }
                             ?>
                             <h4><?php echo $UserMsg?></h4>
+                            <!-- <h4><?php echo $UpdateSqlDBStatus?></h4>  -->
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
 	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>" <?php echo $Server_ID_disabled?>>
