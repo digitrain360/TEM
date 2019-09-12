@@ -21,9 +21,7 @@ $insertSqlDBStatus = "";
 $ValidationStatus = "Success";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $insertSqlDBStatus = "Inside POST";
     if ($_POST['btn_submit']=="AddServer"){
-        $insertSqlDBStatus ="Inside AddServer";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
             $ValidationStatus = "Error";
@@ -111,6 +109,82 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //$DataRetrieved = $Server_Name . " " . $Server_IP_Address . " " . $Server_Location . " " . $Server_Type . " " . $Server_Util_Type . " " . $Server_CPU . " " . $Server_RAM . " " . $Server_Storage_Allocation . " " . $Server_OS;
         }
     }
+    if ($_POST['btn_submit']=="UpdateServer"){
+        if (empty($_POST["Server_ID"])) {
+            $Server_ID_Err = "Server ID is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_ID = test_input($_POST["Server_ID"]);
+        }
+        
+        if (empty($_POST["Server_Name"])) {
+            $Server_Name_Err = "Server Name is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Name = test_input($_POST["Server_Name"]);
+        }
+        
+        if (empty($_POST["Server_IP_Address"])) {
+            $Server_IP_Address_Err = "Server IP Address is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_IP_Address = test_input($_POST["Server_IP_Address"]);
+        }
+        
+        if (empty($_POST["Server_Type"])) {
+            $Server_Type_Err = "Server Type is Required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Type = test_input($_POST["Server_Type"]);
+        }
+        
+        if (empty($_POST["Server_Util_Type"])) {
+            $Server_Util_Type_Err = "Server Utilization Type is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Util_Type = test_input($_POST["Server_Util_Type"]);
+        }
+        
+        if (empty($_POST["Server_OS"])) {
+            $Server_OS_Err = "Server Operation System is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_OS = test_input($_POST["Server_OS"]);
+        }
+        
+        if (empty($_POST["Server_Location"])) {
+            $Server_Location_Err = "Server Location is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Location = test_input($_POST["Server_Location"]);
+        }
+        
+        if (empty($_POST["Server_CPU"])) {
+            $Server_CPU_Err = "Server CPU Details are required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_CPU = test_input($_POST["Server_CPU"]);
+        }
+        
+        if (empty($_POST["Server_RAM"])) {
+            $Server_RAM_Err = "Server RAM details are required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_RAM = test_input($_POST["Server_RAM"]);
+        }
+        
+        if (empty($_POST["Server_Storage_Allocation"])) {
+            $Server_Storage_Allocation_Err = "Server Storage Allocation details are required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_Storage_Allocation = test_input($_POST["Server_Storage_Allocation"]);
+        }
+        
+        if ($ValidationStatus == "Success"){
+            $UpdateSqlDBStatus = Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
+        }
+    }
+    
 }
 function test_input($data) {
     $data = trim($data);
@@ -175,9 +249,7 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
         $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //$sql = "SELECT Server_ID,Server_Name,Server_IP_Address,Server_Location,Server_Type,Server_Util_Type,Server_CPU,Server_RAM,Server_Storage_Allocation,Server_OS FROM server Where Server_ID = $Server_ID";
         $sql = "SELECT * FROM server Where Server_ID = $Server_ID";
-        //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
         $rowcount = 1;
         $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:";
@@ -193,24 +265,7 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
             $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
             $Server_OS = $row["Server_OS"];
             $retrieveresult = "Success";
-            //$retrieveresult. "<br>" . $Server_ID . $Server_Name . $Server_IP_Address;
-            //$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS
         }
-       // $row = $result->fetchAll();
-//        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $result;
-       /* if ($rowcount > 0){
-            $row = $result->fetch();
-            $Server_ID = $row["Server_ID"];
-            $Server_Name = $row["Server_Name"];
-            $Server_IP_Address = $row["Server_IP_Address"];
-            $Server_Location = $row["Server_Location"];
-            $Server_Type = $row["Server_Type"];
-            $Server_Util_Type = $row["Server_Util_Type"];
-            $Server_CPU = $row["Server_CPU"];
-            $Server_RAM = $row["Server_RAM"];
-            $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
-            $Server_OS = $row["Server_OS"];
-        }*/
     }
     catch(PDOException $e)
     {
@@ -220,6 +275,52 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
     $conn = null;
     return $retrieveresult;
 }
+
+function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
+{
+    $servername = "dtemdm01.mysql.database.azure.com";
+    $username = "temdbmadm@dtemdm01";
+    $password = "waheguru@1112";
+    $options = array(
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+        PDO::MYSQL_ATTR_SSL_CA => '/SSL/BaltimoreCyberTrustRoot.crt',
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+    );
+    
+    /*	$servername = "localhost";
+     $username = "root";
+     $password = "temjul19";
+     $dbname = "dbtemd01";*/
+    $UpdateResult = "";
+    try {
+        $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "UPDATE server 
+                SET 
+                    Server_Name = '$Server_Name',
+                    Server_IP_Address = '$Server_IP_Address',
+                    Server_Location = '$Server_Location',
+                    Server_Type = '$Server_Type',
+                    Server_Util_Type = '$Server_Util_Type',
+                    Server_CPU = '$Server_CPU',
+                    Server_RAM = '$Server_RAM',
+                    Server_Storage_Allocation = '$Server_Storage_Allocation',
+                    Server_OS = '$Server_OS'
+                WHERE Server_ID = '$Server_ID'"; 
+        // use exec() because no results are returned
+        $conn->exec($sql);
+        $UpdateResult="Success";
+    }
+    catch(PDOException $e)
+    {
+        $UpdateResult = $sql . "<br>" . $e->getMessage();
+    }
+    
+    $conn = null;
+    return $UpdateResult;
+}
+
 
 ?>
  <!--<div class="jumbotron text-center bg-primary">
@@ -356,11 +457,24 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
                                 if ($Update_Search_Result == "Success"){
                                     $disabled = "";
                                     $Server_ID_disabled = "disabled";
-                                    $UserMsg = "Make changes to the attributes as needed Server ID and Press Update";
-                                } else{
-                                    $disabled = 'disabled';
-                                    $Server_ID_disabled = "";
-                                    $UserMsg = "Enter Server ID and Press Search";
+                                    $Search_btn_disabled = "disabled";
+                                    $Update_btn_disabled = "";
+                                    $UserMsg = "Make changes to the attributes as needed and Press Update";
+                                } else {
+                                    if ($UpdateSqlDBStatus == "Success")
+                                    {
+                                        $disabled = 'disabled';
+                                        $Server_ID_disabled = "";
+                                        $Search_btn_disabled = "";
+                                        $Update_btn_disabled = "disabled";
+                                        $UserMsg = "Enter Server ID and Press Search";
+                                    } else{
+                                        $disabled = 'disabled';
+                                        $Server_ID_disabled = "";
+                                        $Search_btn_disabled = "";
+                                        $Update_btn_disabled = "disabled";
+                                        $UserMsg = "Enter Server ID and Press Search";
+                                    }
                                 }
                             ?>
                             <h4><?php echo $UserMsg?></h4>
@@ -414,8 +528,9 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
 	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value="<?php echo $Server_Storage_Allocation ?>" <?php echo $disabled; ?>>
 	      						<p><span class="error"><?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    					</div>
-	    					<button type="submit" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch">Search</button>
-	    					<button type="submit" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" disabled>Update</button>
+	    					<button type="submit" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch" <?php echo $Search_btn_disabled?>>Search</button>
+	    					<button type="submit" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" <?php  echo $Update_btn_disabled?>>Update</button>
+	    					<button type="submit" name="btn_submit" id="ClearData" class="btn btn-primary" value="ClearData">>Clear</button>
 	    					<?php
 					        /*   echo "<h4>Result</h4>";
 					           echo $disabled;
