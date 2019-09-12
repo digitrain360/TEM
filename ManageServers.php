@@ -460,7 +460,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 				 			<?php 
                                 if ($Update_Search_Result == "Success"){
                                     $disabled = "";
-                                    $Server_ID_disabled = "disabled";
+                                    $Server_ID_disabled = "";
                                     $Search_btn_disabled = "disabled";
                                     $Update_btn_disabled = "";
                                     $UserMsg = "Make changes to the attributes as needed and Press Update";
