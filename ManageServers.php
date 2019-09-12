@@ -190,7 +190,8 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
             $Server_RAM = $row["Server_RAM"];
             $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
             $Server_OS = $row["Server_OS"];
-            $retrieveresult = $retrieveresult. "<br>" . $Server_ID . $Server_Name . $Server_IP_Address;
+            $retrieveresult = "Success";
+            //$retrieveresult. "<br>" . $Server_ID . $Server_Name . $Server_IP_Address;
             //$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS
         }
        // $row = $result->fetchAll();
