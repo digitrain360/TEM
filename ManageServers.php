@@ -110,6 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($_POST['btn_submit']=="UpdateServer"){
+        $UpdateSqlDBStatus = "Inside Update Server"
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
             $ValidationStatus = "Error";
@@ -478,7 +479,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                                 }
                             ?>
                             <h4><?php echo $UserMsg?></h4>
-                            <!-- <h4><?php echo $UpdateSqlDBStatus?></h4>  -->
+                            <h4><?php echo $UpdateSqlDBStatus?></h4>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
 	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>" <?php echo $Server_ID_disabled?>>
@@ -531,7 +532,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 	    					</div>
 	    					<button type="submit" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch" <?php echo $Search_btn_disabled?>>Search</button>
 	    					<button type="submit" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" <?php  echo $Update_btn_disabled?>>Update</button>
-	    					<button type="submit" name="btn_submit" id="ClearData" class="btn btn-primary" value="ClearData">>Clear</button>
+	    					<button type="submit" name="btn_submit" id="ClearData" class="btn btn-primary" value="ClearData">Clear</button>
 	    					<?php
 					        /*   echo "<h4>Result</h4>";
 					           echo $disabled;
