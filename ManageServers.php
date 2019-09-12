@@ -177,8 +177,8 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         $sql = "SELECT * FROM server Where Server_ID = $Server_ID";
         //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
-        $statement = $conn.prepare($sql);
-        $result = $statement.execute();
+        $result = $conn.exec($sql);
+//        $result = $statement.execute();
         $row = $result;
         $rowcount = 1;
         //$rowcount = $row['total_rows'];
