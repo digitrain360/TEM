@@ -349,7 +349,7 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
 	    				</form>
 	    			</div>
 	    			<div class="tab-pane container active" id="Update">
-	    				<h1> Enter Server ID or Name and Press Search</h1>
+	    				<h1> Enter Server ID and Press Search</h1>
 						<p><span class="error">* required field</span></p>
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
@@ -367,7 +367,7 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" name="Server_Name" value="<?php echo $Update_Search_Result ?>" <?php echo $disabled; ?>>
+        	      				<input type="text" class="form-control" id="Server_Name" name="Server_Name" value="<?php echo $Server_Name ?>" <?php echo $disabled; ?>>
         	      				<p><span class="error"><?php echo $Server_Name_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
@@ -407,13 +407,13 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value="<?php $Server_Storage_Allocation ?>" <?php echo $disabled; ?>>
+	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value="<?php echo $Server_Storage_Allocation ?>" <?php echo $disabled; ?>>
 	      						<p><span class="error"><?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    					</div>
 	    					<button type="submit" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch">Search</button>
 	    					<button type="submit" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" disabled>Update</button>
 	    					<?php
-					           echo "<h4>Result</h4>";
+					        /*   echo "<h4>Result</h4>";
 					           echo $disabled;
 					           echo $Update_Search_Result;
 					           echo $Server_ID;
@@ -426,7 +426,7 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
 					           echo $Server_RAM;
 					           echo $Server_Storage_Allocation;
 					           echo $Server_OS;
-					           echo $DataRetrieved;
+					           echo $DataRetrieved;*/
 				            ?>
 				          </form>
 					</div>
