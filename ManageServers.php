@@ -365,7 +365,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" name="Server_Name" value="<?php echo $Server_Name ?>" <?php echo $disabled; ?>>
+        	      				<input type="text" class="form-control" id="Server_Name" name="Server_Name" value="<?php echo $Update_Search_Result ?>" <?php echo $disabled; ?>>
         	      				<p><span class="error"><?php echo $Server_Name_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
