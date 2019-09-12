@@ -360,7 +360,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
                             ?>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
-	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID">
+	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>">
 	      						<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
 	    					</div>
         	    			<div class="form-group">
