@@ -25,6 +25,7 @@ $updatePaneActive = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['btn_submit']=="AddServer"){
         $addPaneActive = "active";
+        $updatePaneActive = "";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
             $ValidationStatus = "Error";
@@ -101,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($_POST['btn_submit']=="UpdateSearch"){
         $updatePaneActive = "active";
+        $addPaneActive = "";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
             $ValidationStatus = "Error";
@@ -115,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($_POST['btn_submit']=="UpdateServer"){
         $updatePaneActive = "active";
+        $addPaneActive = "";
         $UpdateSqlDBStatus = "Inside Update Server";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
