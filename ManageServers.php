@@ -107,7 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         if ($ValidationStatus == "Success"){
-            $Update_Search_Result = Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);;
+            $Update_Search_Result = Retrieve_Server_Details($Server_ID);
+            $DataRetrieved = $Server_Name . " " . $Server_IP_Address . " " . $Server_Location . " " . $Server_Type . " " . $Server_Util_Type . " " . $Server_CPU . " " . $Server_RAM . " " . $Server_Storage_Allocation . " " . $Server_OS;
         }
     }
 }
@@ -153,7 +154,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	return $result;
 }
 
-function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
+function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
 {
     $servername = "dtemdm01.mysql.database.azure.com";
     $username = "temdbmadm@dtemdm01";
@@ -424,6 +425,7 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
 					           echo $Server_RAM;
 					           echo $Server_Storage_Allocation;
 					           echo $Server_OS;
+					           echo $DataRetrieved;
 				            ?>
 				          </form>
 					</div>
