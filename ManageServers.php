@@ -177,14 +177,9 @@ function Retrieve_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Ser
         $sql = "SELECT * FROM server Where Server_ID = $Server_ID";
         //,'$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type', '$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
         // use exec() because no results are returned
-        $result = $conn.exec($sql);
-//        $result = $statement.execute();
-        $row = $result;
         $rowcount = 1;
-        //$rowcount = $row['total_rows'];
-        //$result=$conn->exec($sql);
-        /*$rowcount = $result->rowcount; */
-        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $row;
+        $result=$conn->exec($sql);
+        $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:" . $result;
        /* if ($rowcount > 0){
             $row = $result->fetch();
             $Server_ID = $row["Server_ID"];
