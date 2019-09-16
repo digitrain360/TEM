@@ -639,13 +639,13 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
                                 if ($Remove_Search_Result == "Success"){
-                                    $disabled = "";
+                                    $disabled = "disabled";
                                     $Server_ID_disabled = "readonly";
                                     $Search_btn_disabled = "disabled";
                                     $Remove_btn_disabled = "";
                                     $UserMsg = "Press on Remove button to remove Server from Inventory";
                                 } else {
-                                    if ($UpdateSqlDBStatus == "Success")
+                                    if ($RemoveSqlDBStatus == "Success")
                                     {
                                         $disabled = 'disabled';
                                         $Server_ID_disabled = "";
@@ -665,45 +665,53 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
-	      						<input type="text" class="form-control" id="Server_ID" placeholder="Enter Server ID" name="Server_ID" <?php echo $Server_ID_disabled?>>
+	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>" <?php echo $Server_ID_disabled?>>
 	      						<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name" disabled>
-        	      				<p><span class="error">* <?php echo $Server_Name_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="Server_Name" name="Server_Name" value="<?php echo $Server_Name ?>" <?php echo $disabled; ?>>
+        	      				<p><span class="error"><?php echo $Server_Name_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server IP Address">Server IP Address:</label>
-        	      				<input type="text" class="form-control" id="Server_IP_Address" placeholder="Enter Server IP Address" name="Server_IP_Address" disabled>
+        	      				<input type="text" class="form-control" id="Server_IP_Address" name="Server_IP_Address" value="<?php echo $Server_IP_Address ?>" <?php echo $disabled; ?>>
+        	      				<p><span class="error"><?php echo $Server_IP_Address_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Type">Server Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Type" placeholder="Enter Server Type" name="Server_Type" disabled>
+        	      				<input type="text" class="form-control" id="Server_Type" name="Server_Type" value="<?php echo $Server_Type ?>" <?php echo $disabled; ?>>
+        	      				<p><span class="error"><?php echo $Server_Type_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Utilization Type">Server Utilization Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Util_Type" placeholder="Enter Server Utilization Type" name="Server_Util_Type" disabled>
+        	      				<input type="text" class="form-control" id="Server_Util_Type" name="Server_Util_Type" value="<?php echo $Server_Util_Type ?>" <?php echo $disabled; ?>>
+        	      				<p><span class="error"><?php echo $Server_Util_Type_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Operating System">Server Operating System:</label>
-        	      				<input type="text" class="form-control" id="Server_OS" placeholder="Enter Server Operating System" name="Server_OS" disabled>
+        	      				<input type="text" class="form-control" id="Server_OS" name="Server_OS" value="<?php echo $Server_OS ?>" <?php echo $disabled; ?>>
+        	      				<p><span class="error"><?php echo $Server_OS_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Location">Server Location:</label>
-        	      				<input type="text" class="form-control" id="Server_Location" placeholder="Enter Server Location" name="Server_Location" disabled>
+        	      				<input type="text" class="form-control" id="Server_Location" name="Server_Location" value="<?php echo $Server_Location ?>" <?php echo $disabled; ?>>
+        	      				<p><span class="error"><?php echo $Server_Location_Err;?></span></p>
         	    			</div>
 			    			<div class="form-group">
 	    		  				<label for="Server CPU">Server CPUs:</label>
-	      						<input type="text" class="form-control" id="Server_CPU" placeholder="Enter Server CPUs" name="Server_CPU" disabled>
+	      						<input type="text" class="form-control" id="Server_CPU" name="Server_CPU" value="<?php echo $Server_CPU ?>" <?php echo $disabled; ?>>
+	      						<p><span class="error"><?php echo $Server_CPU_Err;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server RAM">Server RAM Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_RAM" placeholder="Enter Server RAM Allocation" name="Server_RAM" disabled>
+	      						<input type="text" class="form-control" id="Server_RAM" name="Server_RAM"  value="<?php echo $Server_RAM ?>" <?php echo $disabled; ?>>
+	      						<p><span class="error"><?php echo $Server_RAM_Err;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation" disabled>
+	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value="<?php echo $Server_Storage_Allocation ?>" <?php echo $disabled; ?>>
+	      						<p><span class="error"><?php echo $Server_Storage_Allocation_Err;?></span></p>
 	    					</div>
 	    					<button type="submit" name="btn_submit" id="RemoveSearch" class="btn btn-primary" value="RemoveSearch" <?php echo $Search_btn_disabled?>>Search</button>
 	    					<button type="submit" name="btn_submit" id="RemoveServer" class="btn btn-primary" value="RemoveServer" <?php echo $Remove_btn_disabled?>>Remove</button>
