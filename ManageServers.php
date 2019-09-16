@@ -100,6 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($ValidationStatus == "Success"){
             $insertSqlDBStatus = insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
+        } else
+        {
+            $insertSqlDBStatus = "Failed";
         }
     }
     if ($_POST['btn_submit']=="UpdateSearch"){
@@ -272,39 +275,6 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	return $result;
 }
 
-function Remove_Server_Details($Server_ID)
-{
-    $servername = "dtemdm01.mysql.database.azure.com";
-    $username = "temdbmadm@dtemdm01";
-    $password = "waheguru@1112";
-    $options = array(
-        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-        PDO::MYSQL_ATTR_SSL_CA => '/SSL/BaltimoreCyberTrustRoot.crt',
-        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
-    );
-    
-    /*$servername = "localhost";
-     $username = "root";
-     $password = "temjul19";
-     $dbname = "dbtemd01";*/
-    $result = "";
-    try {
-        $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "DELETE FROM server where Server_ID = '$Server_ID'";
-        // use exec() because no results are returned
-        $conn->exec($sql);
-        $result="Success: ";
-    }
-    catch(PDOException $e)
-    {
-        $result= $sql . "<br>" . $e->getMessage();
-    }
-    
-    $conn = null;
-    return $result;
-}
 
 function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
 {
@@ -399,6 +369,39 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
     return $UpdateResult;
 }
 
+function Remove_Server_Details($Server_ID)
+{
+    $servername = "dtemdm01.mysql.database.azure.com";
+    $username = "temdbmadm@dtemdm01";
+    $password = "waheguru@1112";
+    $options = array(
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+        PDO::MYSQL_ATTR_SSL_CA => '/SSL/BaltimoreCyberTrustRoot.crt',
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+    );
+    
+    /*$servername = "localhost";
+     $username = "root";
+     $password = "temjul19";
+     $dbname = "dbtemd01";*/
+    $result = "";
+    try {
+        $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "DELETE FROM server where Server_ID = '$Server_ID'";
+        // use exec() because no results are returned
+        $conn->exec($sql);
+        $result="Success: ";
+    }
+    catch(PDOException $e)
+    {
+        $result= $sql . "<br>" . $e->getMessage();
+    }
+    
+    $conn = null;
+    return $result;
+}
 
 ?>
  <!--<div class="jumbotron text-center bg-primary">
@@ -473,9 +476,16 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                             	$Server_ID_disabled = "readonly";
                             	$UserMsg = "Add Server Result: " . $insertSqlDBStatus;
 					       } else{
+					           if ($insertSqlDBStatus = "Failed"){
                                 $disabled = "";
                                 $Server_ID_disabled = "";
-                                $UserMsg = "Enter the Server Details and Press Submit";
+                                $UserMsg = "Correct the information and Resubmit";
+					           } else{
+					               $disabled = "";
+					               $Server_ID_disabled = "";
+					               $Server_ID = $Server_Name = $Server_IP_Address = $Server_Location = $Server_Type = $Server_Util_Type = $Server_CPU = $Server_RAM = $Server_Storage_Allocation = $Server_OS = "";
+					               $UserMsg = "Enter the Server Details and Press Submit";
+					           }
 					       }
                         ?>
 			             <!-- <form method="post" action="/action_page.php">  -->
