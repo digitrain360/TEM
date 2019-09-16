@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <style>
 	.error {color: #FF0000;}
@@ -15,9 +16,20 @@
 <body>
 <?php
 // define variables and set to empty values
-$Server_ID_Err = $Server_Name_Err = $Server_IP_Address_Err = $Server_Location_Err = $Server_Type_Err = $Server_Util_Type_Err = $Server_CPU_Err = $Server_RAM_Err = $Server_Storage_Allocation_Err = $Server_OS_Err = "";
-$Server_ID = $Server_Name = $Server_IP_Address = $Server_Location = $Server_Type = $Server_Util_Type = $Server_CPU = $Server_RAM = $Server_Storage_Allocation = $Server_OS = "";
-$insertSqlDBStatus = "";
+//$Server_ID_Err = $Server_Name_Err = $Server_IP_Address_Err = $Server_Location_Err = $Server_Type_Err = $Server_Util_Type_Err = $Server_CPU_Err = $Server_RAM_Err = $Server_Storage_Allocation_Err = $Server_OS_Err = "";
+//$Server_ID = $Server_Name = $Server_IP_Address = $Server_Location = $Server_Type = $Server_Util_Type = $Server_CPU = $Server_RAM = $Server_Storage_Allocation = $Server_OS = "";
+
+//Variable definitions to hold Server Details
+$addServerID = $addServerName = $addServerIPAddress = $addServerLocation = $addServerType = $addServerUtilType = $addServerCPU = $addServerRAM = $addServerStorageAllocation = $addServerOS = "";
+$updateServerID = $updateServerName = $updateServerIPAddress = $updateServerLocation = $updateServerType = $updateServerUtilType = $updateServerCPU = $updateServerRAM = $updateServerStorageAllocation = $updateServerOS = "";
+$retrieveServerID = $retrieveServerName = $retrieveServerIPAddress = $retrieveServerLocation = $retrieveServerType = $retrieveServerUtilType = $retrieveServerCPU = $retrieveServerRAM = $retrieveServerStorageAllocation = $retrieveServerOS = "";$insertSqlDBStatus = "";
+
+//Variables definitions to hold error messages
+$addServerIDErr = $addServerNameErr = $addServerIPAddressErr = $addServerLocationErr = $addServerTypeErr = $addServerUtilTypeErr = $addServerCPUErr = $addServerRAMErr = $addServerStorageAllocationErr = $addServerOSErr = "";
+$updateServerIDErr = $updateServerNameErr = $updateServerIPAddressErr = $updateServerLocationErr = $updateServerTypeErr = $updateServerUtilTypeErr = $updateServerCPUErr = $updateServerRAMErr = $updateServerStorageAllocationErr = $updateServerOSErr = "";
+$removeServerIDErr = $removeServerNameErr = $removeServerIPAddressErr = $removeServerLocationErr = $removeServerTypeErr = $removeServerUtilTypeErr = $removeServerCPUErr = $removeServerRAMErr = $removeServerStorageAllocationErr = $removeServerOSErr = "";
+
+
 $ValidationStatus = "Success";
 $addPaneActive = "active";
 $updatePaneActive = "";
@@ -28,78 +40,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $addPaneActive = "active";
         $RemovePaneActive = "";
         $updatePaneActive = "";
-        if (empty($_POST["Server_ID"])) {
-            $Server_ID_Err = "Server ID is required";
+        if (empty($_POST["addServerID"])) {
+            $addServerIDErr = "Server ID is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_ID = test_input($_POST["Server_ID"]);
+            $addServerID = test_input($_POST["addServerID"]);
         }
 
-        if (empty($_POST["Server_Name"])) {
-            $Server_Name_Err = "Server Name is required";
+        if (empty($_POST["addServerName"])) {
+            $addServerNameErr = "Server Name is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Name = test_input($_POST["Server_Name"]);
+            $addServerName = test_input($_POST["addServerName"]);
         }
   
-        if (empty($_POST["Server_IP_Address"])) {
-            $Server_IP_Address_Err = "Server IP Address is required";
+        if (empty($_POST["addServerIPAddress"])) {
+            $addServerIPAddressErr = "Server IP Address is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_IP_Address = test_input($_POST["Server_IP_Address"]);
+            $addServerIPAddress = test_input($_POST["addServerIPAddress"]);
         }
 
-        if (empty($_POST["Server_Type"])) {
-            $Server_Type_Err = "Server Type is Required";
+        if (empty($_POST["addServerType"])) {
+            $addServerTypeErr = "Server Type is Required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Type = test_input($_POST["Server_Type"]);
+            $addServerType = test_input($_POST["addServerType"]);
         }
 
-        if (empty($_POST["Server_Util_Type"])) {
-            $Server_Util_Type_Err = "Server Utilization Type is required";
+        if (empty($_POST["addServerUtilType"])) {
+            $addServerUtilTypeErr = "Server Utilization Type is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Util_Type = test_input($_POST["Server_Util_Type"]);
+            $addServerUtilType = test_input($_POST["addServerUtilType"]);
         }
         
-        if (empty($_POST["Server_OS"])) {
-            $Server_OS_Err = "Server Operation System is required";
+        if (empty($_POST["addServer_OS"])) {
+            $addServerOSErr = "Server Operation System is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_OS = test_input($_POST["Server_OS"]);
+            $addServerOS = test_input($_POST["addServerOS"]);
         }
           
-        if (empty($_POST["Server_Location"])) {
-            $Server_Location_Err = "Server Location is required";
+        if (empty($_POST["addServerLocation"])) {
+            $addServerLocationErr = "Server Location is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Location = test_input($_POST["Server_Location"]);
+            $addServerLocation = test_input($_POST["addServerLocation"]);
         }
           
-        if (empty($_POST["Server_CPU"])) {
-            $Server_CPU_Err = "Server CPU Details are required";
+        if (empty($_POST["addServerCPU"])) {
+            $addServerCPUErr = "Server CPU Details are required";
             $ValidationStatus = "Error";
         } else {
-            $Server_CPU = test_input($_POST["Server_CPU"]);
+            $addServerCPU = test_input($_POST["addServerCPU"]);
         }
           
-        if (empty($_POST["Server_RAM"])) {
-            $Server_RAM_Err = "Server RAM details are required";
+        if (empty($_POST["addServerRAM"])) {
+            $addServerRAMErr = "Server RAM details are required";
             $ValidationStatus = "Error";
         } else {
-            $Server_RAM = test_input($_POST["Server_RAM"]);
+            $addServerRAM = test_input($_POST["addServerRAM"]);
         }
           
-        if (empty($_POST["Server_Storage_Allocation"])) {
-            $Server_Storage_Allocation_Err = "Server Storage Allocation details are required";
+        if (empty($_POST["addServerStorageAllocation"])) {
+            $addServerStorageAllocationErr = "Server Storage Allocation details are required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Storage_Allocation = test_input($_POST["Server_Storage_Allocation"]);
+            $addServerStorageAllocation = test_input($_POST["addServerStorageAllocation"]);
         }
         
         if ($ValidationStatus == "Success"){
-            $insertSqlDBStatus = insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
+            $insertSqlDBStatus = insert_db($addServerID,$addServerName,$addServerIPAddress,$addServerLocation,$addServerType,$addServerUtilType,$addServerCPU,$addServerRAM,$addServerStorageAllocation,$addServerOS);
         } else{
             $insertSqlDBStatus = "ValidationFailed";
         }
@@ -108,16 +120,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $updatePaneActive = "active";
         $RemovePaneActive = "";
         $addPaneActive = "";
-        if (empty($_POST["Server_ID"])) {
-            $Server_ID_Err = "Server ID is required";
+        if (empty($_POST["updateServerID"])) {
+            $updateServerIDErr = "Server ID is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_ID = test_input($_POST["Server_ID"]);
+            $updateServerID = test_input($_POST["updateServerID"]);
         }
         
         if ($ValidationStatus == "Success"){
-            $Update_Search_Result = Retrieve_Server_Details($Server_ID);
-            //$DataRetrieved = $Server_Name . " " . $Server_IP_Address . " " . $Server_Location . " " . $Server_Type . " " . $Server_Util_Type . " " . $Server_CPU . " " . $Server_RAM . " " . $Server_Storage_Allocation . " " . $Server_OS;
+            $Update_Search_Result = Retrieve_Server_Details($updateServerID);
+            if ($Update_Search_Result == "Success"){
+                $updateServerID = $retrieveServerID;
+                $updateServerName = $retrieveServerName;
+                $updateServerIPAddress = $retrieveServerIPAddress;
+                $updateServerLocation = $retrieveServerLocation;
+                $updateServerType = $retrieveServerType;
+                $updateServerUtilType = $retrieveServerUtilType;
+                $updateServerCPU = $retrieveServerCPU;
+                $updateServerRAM = $retrieveServerRAM;
+                $updateServerStorageAllocation = $retrieveServerStorageAllocation;
+                $updateServerOS = $retrieveServerOS;
+            }
         }
     }
     if ($_POST['btn_submit']=="UpdateServer"){
@@ -125,79 +148,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $RemovePaneActive = "";
         $addPaneActive = "";
         $UpdateSqlDBStatus = "Inside Update Server";
-        if (empty($_POST["Server_ID"])) {
-            $Server_ID_Err = "Server ID is required";
+        if (empty($_POST["updateServerID"])) {
+            $updateServerIDErr = "Server ID is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_ID = test_input($_POST["Server_ID"]);
+            $updateServerID = test_input($_POST["updateServerID"]);
         }
         
-        if (empty($_POST["Server_Name"])) {
-            $Server_Name_Err = "Server Name is required";
+        if (empty($_POST["updateServerName"])) {
+            $updateServerNameErr = "Server Name is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Name = test_input($_POST["Server_Name"]);
+            $updateServerName = test_input($_POST["updateServerName"]);
         }
         
-        if (empty($_POST["Server_IP_Address"])) {
-            $Server_IP_Address_Err = "Server IP Address is required";
+        if (empty($_POST["updateServerIPAddress"])) {
+            $updateServerIPAddressErr = "Server IP Address is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_IP_Address = test_input($_POST["Server_IP_Address"]);
+            $updateServerIPAddress = test_input($_POST["updateServerIPAddress"]);
         }
         
-        if (empty($_POST["Server_Type"])) {
-            $Server_Type_Err = "Server Type is Required";
+        if (empty($_POST["updateServerType"])) {
+            $updateServerTypeErr = "Server Type is Required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Type = test_input($_POST["Server_Type"]);
+            $updateServerType = test_input($_POST["updateServerType"]);
         }
         
-        if (empty($_POST["Server_Util_Type"])) {
-            $Server_Util_Type_Err = "Server Utilization Type is required";
+        if (empty($_POST["updateServerUtilType"])) {
+            $updateServerUtilTypeErr = "Server Utilization Type is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Util_Type = test_input($_POST["Server_Util_Type"]);
+            $updateServerUtilType = test_input($_POST["updateServerUtilType"]);
         }
         
-        if (empty($_POST["Server_OS"])) {
-            $Server_OS_Err = "Server Operation System is required";
+        if (empty($_POST["updateServer_OS"])) {
+            $updateServerOSErr = "Server Operation System is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_OS = test_input($_POST["Server_OS"]);
+            $updateServerOS = test_input($_POST["updateServerOS"]);
         }
         
-        if (empty($_POST["Server_Location"])) {
-            $Server_Location_Err = "Server Location is required";
+        if (empty($_POST["updateServerLocation"])) {
+            $updateServerLocationErr = "Server Location is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Location = test_input($_POST["Server_Location"]);
+            $updateServerLocation = test_input($_POST["updateServerLocation"]);
         }
         
-        if (empty($_POST["Server_CPU"])) {
-            $Server_CPU_Err = "Server CPU Details are required";
+        if (empty($_POST["updateServerCPU"])) {
+            $updateServerCPUErr = "Server CPU Details are required";
             $ValidationStatus = "Error";
         } else {
-            $Server_CPU = test_input($_POST["Server_CPU"]);
+            $updateServerCPU = test_input($_POST["updateServerCPU"]);
         }
         
-        if (empty($_POST["Server_RAM"])) {
-            $Server_RAM_Err = "Server RAM details are required";
+        if (empty($_POST["updateServerRAM"])) {
+            $updateServerRAMErr = "Server RAM details are required";
             $ValidationStatus = "Error";
         } else {
-            $Server_RAM = test_input($_POST["Server_RAM"]);
+            $updateServerRAM = test_input($_POST["updateServerRAM"]);
         }
         
-        if (empty($_POST["Server_Storage_Allocation"])) {
-            $Server_Storage_Allocation_Err = "Server Storage Allocation details are required";
+        if (empty($_POST["updateServerStorageAllocation"])) {
+            $updateServerStorageAllocationErr = "Server Storage Allocation details are required";
             $ValidationStatus = "Error";
         } else {
-            $Server_Storage_Allocation = test_input($_POST["Server_Storage_Allocation"]);
+            $updateServerStorageAllocation = test_input($_POST["updateServerStorageAllocation"]);
         }
         
         if ($ValidationStatus == "Success"){
             $UpdateSqlDBStatus = "Validation Successfull";
-            $UpdateSqlDBStatus = Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
+            $UpdateSqlDBStatus = Update_Server_Details($updateServerID,$updateServerName,$updateServerIPAddress,$updateServerLocation,$updateServerType,$updateServerUtilType,$updateServerCPU,$updateServerRAM,$updateServerStorageAllocation,$updateServerOS);
         } else {
             $UpdateSqlDBStatus = "Validation Failed";
         }
@@ -207,15 +230,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $RemovePaneActive = "active";
         $updatePaneActive = "";
         $addPaneActive = "";
-        if (empty($_POST["Server_ID"])) {
-            $Server_ID_Err = "Server ID is required";
+        if (empty($_POST["removeServerID"])) {
+            $removeServerIDErr = "Server ID is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_ID = test_input($_POST["Server_ID"]);
+            $removeServerID = test_input($_POST["removeServerID"]);
         }
         
         if ($ValidationStatus == "Success"){
-            $Remove_Search_Result = Retrieve_Server_Details($Server_ID);
+            $retrieveServerID = $removeServerID;
+            $Remove_Search_Result = Retrieve_Server_Details($retrieveServerID);
+            if ($Remove_Search_Result == "Success"){
+                $removeServerID = $retrieveServerID;
+                $removeServerName = $retrieveServerName;
+                $removeServerIPAddress = $retrieveServerIPAddress;
+                $removeServerLocation = $retrieveServerLocation;
+                $removeServerType = $retrieveServerType;
+                $removeServerUtilType = $retrieveServerUtilType;
+                $removeServerCPU = $retrieveServerCPU;
+                $removeServerRAM = $retrieveServerRAM;
+                $removeServerStorageAllocation = $retrieveServerStorageAllocation;
+                $removeServerOS = $retrieveServerOS;
+            }
             //$DataRetrieved = $Server_Name . " " . $Server_IP_Address . " " . $Server_Location . " " . $Server_Type . " " . $Server_Util_Type . " " . $Server_CPU . " " . $Server_RAM . " " . $Server_Storage_Allocation . " " . $Server_OS;
         }
     }
@@ -223,13 +259,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $RemovePaneActive = "active";
         $updatePaneActive = "";
         $addPaneActive = "";
-        if (empty($_POST["Server_ID"])) {
-            $Server_ID_Err = "Server ID is required";
+        if (empty($_POST["removeServerID"])) {
+            $removeServerIDErr = "Server ID is required";
             $ValidationStatus = "Error";
         } else {
-            $Server_ID = test_input($_POST["Server_ID"]);
+            $removeServerID = test_input($_POST["removeServerID"]);
         }
-        $RemoveSqlDBStatus = Remove_Server_Details($Server_ID);
+        $RemoveSqlDBStatus = Remove_Server_Details($removeServerID);
     }
 }
 function test_input($data) {
@@ -239,7 +275,7 @@ function test_input($data) {
     return $data;
 }
 
-function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS) 
+function insert_db($addServerID,$addServerName,$addServerIPAddress,$addServerLocation,$addServerType,$addServerUtilType,$addServerCPU,$addServerRAM,$addServerStorageAllocation,$addServerOS) 
 {
 	$servername = "dtemdm01.mysql.database.azure.com";
 	$username = "temdbmadm@dtemdm01";
@@ -260,7 +296,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
     	// set the PDO error mode to exception
     	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     	$sql = "INSERT INTO server (Server_ID,Server_Name,Server_IP_Address,Server_Location,Server_Type,Server_Util_Type,Server_CPU,Server_RAM,Server_Storage_Allocation,Server_OS)
-    	VALUES ('$Server_ID','$Server_Name','$Server_IP_Address','$Server_Location','$Server_Type','$Server_Util_Type','$Server_CPU','$Server_RAM','$Server_Storage_Allocation','$Server_OS')";
+    	VALUES ('$addServerID','$addServerName','$addServerIPAddress','$addServerLocation','$addServerType','$addServerUtilType','$addServerCPU','$addServerRAM','$addServerStorageAllocation','$addServerOS')";
     	// use exec() because no results are returned
     	$conn->exec($sql);
     	$result="Success";
@@ -274,7 +310,7 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 	return $result;
 }
 
-function Remove_Server_Details($Server_ID)
+function Remove_Server_Details($removeServerID)
 {
     $servername = "dtemdm01.mysql.database.azure.com";
     $username = "temdbmadm@dtemdm01";
@@ -294,7 +330,7 @@ function Remove_Server_Details($Server_ID)
         $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "DELETE FROM server where Server_ID = '$Server_ID'";
+        $sql = "DELETE FROM server where Server_ID = '$removeServerID'";
         // use exec() because no results are returned
         $conn->exec($sql);
         $result="Success";
@@ -308,9 +344,9 @@ function Remove_Server_Details($Server_ID)
     return $result;
 }
 
-function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
+function Retrieve_Server_Details($retrieveServerID)
 {
-    global $Server_ID, $Server_Name, $Server_IP_Address, $Server_Location, $Server_Type, $Server_Util_Type, $Server_CPU, $Server_RAM, $Server_Storage_Allocation, $Server_OS;
+    global $retrieveServerID,$retrieveServerName,$retrieveServerIPAddress,$retrieveServerLocation,$retrieveServerType,$retrieveServerUtilType,$retrieveServerCPU,$retrieveServerRAM,$retrieveServerStorageAllocation,$retrieveServerOS;
     $servername = "dtemdm01.mysql.database.azure.com";
     $username = "temdbmadm@dtemdm01";
     $password = "waheguru@1112";
@@ -329,21 +365,21 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
         $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM server Where Server_ID = $Server_ID";
+        $sql = "SELECT * FROM server Where Server_ID = '$retrieveServerID'";
         // use exec() because no results are returned
         $rowcount = 1;
         $retrieveresult = "<br> SQL IS: " . $sql . "<br> Row Count: " . $rowcount . "<br> Data:";
         foreach($conn->query($sql) as $row){
-            $Server_ID = $row["Server_ID"];
-            $Server_Name = $row["Server_Name"];
-            $Server_IP_Address = $row["Server_IP_Address"];
-            $Server_Location = $row["Server_Location"];
-            $Server_Type = $row["Server_Type"];
-            $Server_Util_Type = $row["Server_Util_Type"];
-            $Server_CPU = $row["Server_CPU"];
-            $Server_RAM = $row["Server_RAM"];
-            $Server_Storage_Allocation = $row["Server_Storage_Allocation"];
-            $Server_OS = $row["Server_OS"];
+            $retrieveServerID = $row["Server_ID"];
+            $retrieveServerName = $row["Server_Name"];
+            $retrieveServerIPAddress = $row["Server_IP_Address"];
+            $retrieveServerLocation = $row["Server_Location"];
+            $retrieveServerType = $row["Server_Type"];
+            $retrieveServerUtilType = $row["Server_Util_Type"];
+            $retrieveServerCPU = $row["Server_CPU"];
+            $retrieveServerRAM = $row["Server_RAM"];
+            $retrieveServerStorageAllocation = $row["Server_Storage_Allocation"];
+            $retrieveServerOS = $row["Server_OS"];
             $retrieveresult = "Success";
         }
     }
@@ -356,7 +392,7 @@ function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$
     return $retrieveresult;
 }
 
-function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
+function Update_Server_Details($updateServerID,$updateServerName,$updateServerIPAddress,$updateServerLocation,$updateServerType,$updateServerUtilType,$updateServerCPU,$updateServerRAM,$updateServerStorageAllocation,$updateServerOS)
 {
     $servername = "dtemdm01.mysql.database.azure.com";
     $username = "temdbmadm@dtemdm01";
@@ -378,16 +414,16 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "UPDATE server 
                 SET 
-                    Server_Name = '$Server_Name',
-                    Server_IP_Address = '$Server_IP_Address',
-                    Server_Location = '$Server_Location',
-                    Server_Type = '$Server_Type',
-                    Server_Util_Type = '$Server_Util_Type',
-                    Server_CPU = '$Server_CPU',
-                    Server_RAM = '$Server_RAM',
-                    Server_Storage_Allocation = '$Server_Storage_Allocation',
-                    Server_OS = '$Server_OS'
-                WHERE Server_ID = '$Server_ID'"; 
+                    Server_Name = '$updateServerName',
+                    Server_IP_Address = '$updateServerIPAddress',
+                    Server_Location = '$updateServerLocation',
+                    Server_Type = '$updateServerType',
+                    Server_Util_Type = '$updateServerUtilType',
+                    Server_CPU = '$updateServerCPU',
+                    Server_RAM = '$updateServerRAM',
+                    Server_Storage_Allocation = '$updateServerStorageAllocation',
+                    Server_OS = '$updateServerOS'
+                WHERE Server_ID = '$updateServerID'"; 
         // use exec() because no results are returned
         $conn->exec($sql);
         $UpdateResult="Success";
@@ -467,28 +503,27 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
   				</ul>
 			
 				<div class="tab-content">
-					<div class="tab-pane <?php echo $addPaneActive?> container" id="Add">
+				<!-- <div class="tab-pane <?php echo $addPaneActive?> container" id="Add">  -->	
+					<div class="tab-pane container" id="Add">
 					    <?php
-					    if ($addPaneActive == "active"){
-					         if ($insertSqlDBStatus == "Success"){
-                                   $disabled = "readonly";
-                                   $Server_ID_disabled = "readonly";
+					      if ($insertSqlDBStatus == "Success"){
+                                   $addFieldDisabled = "readonly";
+                                   $addServerIDdisabled = "readonly";
                                    $UserMsg = "Add Server Result: " . $insertSqlDBStatus;
 					       } else{
 					           if($insertSqlDBStatus == "ValidationFailed"){
-					               $disabled = "";
-					               $Server_ID_disabled = "";
+					               $addFieldDisabled = "";
+					               $addServerIDdisabled = "";
 					               $UserMsg = "Enter the Server Details and Press Submit";
-					               $AddPaneMessage = "I have been to Validation Failed in Add Pane - Devil " . $Server_ID;
+					               $AddPaneMessage = "I have been to Validation Failed in Add Pane - Devil " . $addServerID;
 					           }else{
-                                    $disabled = "";
-                                    $Server_ID_disabled = "";
+                                    $addFieldDisabled = "";
+                                    $addServerIDdisabled = "";
                                     $UserMsg = "Enter the Server Details and Press Submit";
-                                    $AddPaneMessage = "I have been to Add Pane - Devil " . $Server_ID;
-                                    $Server_ID = "";
+                                    $AddPaneMessage = "I have been to Add Pane - Devil " . $addServerID;
+                                    $addServerID = "";
 					           }
-					       }
-					    }
+					      }
                         ?>
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
@@ -496,56 +531,56 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
-	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>" <?php echo $Server_ID_disabled?>>
-	      						<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
+	      						<input type="text" class="form-control" id="addServerID" name="addServerID" value="<?php echo $addServerID ?>" <?php echo $addServerIDdisabled?>>
+	      						<p><span class="error">* <?php echo $addServerIDErr;?></span></p>
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" name="Server_Name" value="<?php echo $Server_Name ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Name_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="addServerName" name="addServerName" value="<?php echo $addServerName ?>" <?php echo $addFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $addServerNameErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server IP Address">Server IP Address:</label>
-        	      				<input type="text" class="form-control" id="Server_IP_Address" name="Server_IP_Address" value="<?php echo $Server_IP_Address ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_IP_Address_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="addServer_IP_Address" name="addServerIPAddress" value="<?php echo $addServerIPAddress ?>" <?php echo $addFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $addServerIPAddressErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Type">Server Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Type" name="Server_Type" value="<?php echo $Server_Type ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Type_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="addServerType" name="addServerType" value="<?php echo $addServerType ?>" <?php echo $addFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $addServerTypeErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Utilization Type">Server Utilization Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Util_Type" name="Server_Util_Type" value="<?php echo $Server_Util_Type ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Util_Type_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="addServerUtilType" name="addServerUtilType" value="<?php echo $addServerUtilType ?>" <?php echo $addFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $addServerUtilTypeErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Operating System">Server Operating System:</label>
-        	      				<input type="text" class="form-control" id="Server_OS" name="Server_OS" value="<?php echo $Server_OS ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_OS_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="addServerOS" name="addServer_OS" value="<?php echo $addServerOS ?>" <?php echo $addFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $addServerOSErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Location">Server Location:</label>
-        	      				<input type="text" class="form-control" id="Server_Location" name="Server_Location" value="<?php echo $Server_Location ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Location_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="addServerLocation" name="addServerLocation" value="<?php echo $addServerLocation ?>" <?php echo $addFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $addServerLocationErr;?></span></p>
         	    			</div>
 			    			<div class="form-group">
 	    		  				<label for="Server CPU">Server CPUs:</label>
-	      						<input type="text" class="form-control" id="Server_CPU" name="Server_CPU" value="<?php echo $Server_CPU ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_CPU_Err;?></span></p>
+	      						<input type="text" class="form-control" id="addServerCPU" name="addServer_CPU" value="<?php echo $addServerCPU ?>" <?php echo $addFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $addServerCPUErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server RAM">Server RAM Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_RAM" name="Server_RAM"  value="<?php echo $Server_RAM ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_RAM_Err;?></span></p>
+	      						<input type="text" class="form-control" id="addServerRAM" name="addServerRAM"  value="<?php echo $addServerRAM ?>" <?php echo $addFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $addServerRAMErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value="<?php echo $Server_Storage_Allocation ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_Storage_Allocation_Err;?></span></p>
+	      						<input type="text" class="form-control" id="addServerStorageAllocation" name="addServerStorageAllocation" value="<?php echo $addServerStorageAllocation ?>" <?php echo $addFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $addServerStorageAllocationErr;?></span></p>
 	    					</div>
 	    					<button type="submit" class="btn btn-primary" name="btn_submit" value="AddServer">Add Server</button>
-	    					<button type="submit" name="btn_submit" id="ClearData" class="btn btn-primary" value="ClearData">Clear</button>
+	    					<button type="submit" name="btn_submit" id="AddClearData" class="btn btn-primary" value="AddClearData">Clear</button>
 	    					<?php
 					           echo "<h4>Result</h4>";
 					           echo $insertSqlDBStatus;
@@ -556,82 +591,80 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
-    				 			if ($updatePaneActive == "active"){
                                     if ($Update_Search_Result == "Success"){
-                                        $disabled = "";
-                                        $Server_ID_disabled = "readonly";
+                                        $updateFieldDisabled = "";
+                                        $updateServerIDDisabled = "readonly";
                                         $Search_btn_disabled = "disabled";
                                         $Update_btn_disabled = "";
                                         $UserMsg = "Make changes to the attributes as needed and Press Update";
                                     } else {
                                         if ($UpdateSqlDBStatus == "Success")
                                         {
-                                            $disabled = 'disabled';
-                                            $Server_ID_disabled = "";
+                                            $updateFieldDisabled = 'disabled';
+                                            $updateServerIDDisabled = "";
                                             $Search_btn_disabled = "";
                                             $Update_btn_disabled = "disabled";
                                             $UserMsg = "Update Result: " . $UpdateSqlDBStatus;
                                         } else{
-                                            $disabled = 'disabled';
-                                            $Server_ID_disabled = "";
+                                            $updateFieldDisabled = 'disabled';
+                                            $updateServerIDDisabled = "";
                                             $Search_btn_disabled = "";
                                             $Update_btn_disabled = "disabled";
                                             $UserMsg = "Enter Server ID and Press Search";
                                         }
                                     }
-    				 			}
                             ?>
                             <h5><?php echo $UserMsg?></h5>
 							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
-	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>" <?php echo $Server_ID_disabled?>>
-	      						<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
+	      						<input type="text" class="form-control" id="updateServerID" name="updateServerID" value="<?php echo $updateServerID ?>" <?php echo $updateServerIDDisabled?>>
+	      						<p><span class="error">* <?php echo $updateServerIDErr;?></span></p>
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" name="Server_Name" value="<?php echo $Server_Name ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Name_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="updateServerName" name="updateServerName" value="<?php echo $updateServerName ?>" <?php echo $updateFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $updateServerNameErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server IP Address">Server IP Address:</label>
-        	      				<input type="text" class="form-control" id="Server_IP_Address" name="Server_IP_Address" value="<?php echo $Server_IP_Address ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_IP_Address_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="updateServer_IP_Address" name="updateServerIPAddress" value="<?php echo $updateServerIPAddress ?>" <?php echo $updateFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $updateServerIPAddressErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Type">Server Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Type" name="Server_Type" value="<?php echo $Server_Type ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Type_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="updateServerType" name="updateServerType" value="<?php echo $updateServerType ?>" <?php echo $updateFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $updateServerTypeErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Utilization Type">Server Utilization Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Util_Type" name="Server_Util_Type" value="<?php echo $Server_Util_Type ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Util_Type_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="updateServerUtilType" name="updateServerUtilType" value="<?php echo $updateServerUtilType ?>" <?php echo $updateFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $updateServerUtilTypeErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Operating System">Server Operating System:</label>
-        	      				<input type="text" class="form-control" id="Server_OS" name="Server_OS" value="<?php echo $Server_OS ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_OS_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="updateServerOS" name="updateServer_OS" value="<?php echo $updateServerOS ?>" <?php echo $updateFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $updateServerOSErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Location">Server Location:</label>
-        	      				<input type="text" class="form-control" id="Server_Location" name="Server_Location" value="<?php echo $Server_Location ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Location_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="updateServerLocation" name="updateServerLocation" value="<?php echo $updateServerLocation ?>" <?php echo $updateFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $updateServerLocationErr;?></span></p>
         	    			</div>
 			    			<div class="form-group">
 	    		  				<label for="Server CPU">Server CPUs:</label>
-	      						<input type="text" class="form-control" id="Server_CPU" name="Server_CPU" value="<?php echo $Server_CPU ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_CPU_Err;?></span></p>
+	      						<input type="text" class="form-control" id="updateServerCPU" name="updateServer_CPU" value="<?php echo $updateServerCPU ?>" <?php echo $updateFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $updateServerCPUErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server RAM">Server RAM Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_RAM" name="Server_RAM"  value="<?php echo $Server_RAM ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_RAM_Err;?></span></p>
+	      						<input type="text" class="form-control" id="updateServerRAM" name="updateServerRAM"  value="<?php echo $updateServerRAM ?>" <?php echo $updateFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $updateServerRAMErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value="<?php echo $Server_Storage_Allocation ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_Storage_Allocation_Err;?></span></p>
+	      						<input type="text" class="form-control" id="updateServerStorageAllocation" name="updateServerStorageAllocation" value="<?php echo $updateServerStorageAllocation ?>" <?php echo $updateFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $updateServerStorageAllocationErr;?></span></p>
 	    					</div>
 	    					<button type="submit" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch" <?php echo $Search_btn_disabled?>>Search</button>
 	    					<button type="submit" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" <?php  echo $Update_btn_disabled?>>Update</button>
@@ -658,83 +691,81 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
-    				 			if($RemovePaneActive == "active"){
                                     if ($Remove_Search_Result == "Success"){
-                                        $disabled = "disabled";
-                                        $Server_ID_disabled = "readonly";
+                                        $removeFieldDisabled = "disabled";
+                                        $removeServerIDDisabled = "readonly";
                                         $Search_btn_disabled = "disabled";
                                         $Remove_btn_disabled = "";
                                         $UserMsg = "Press on Remove button to remove Server from Inventory";
                                     } else {
                                         if ($RemoveSqlDBStatus == "Success")
                                         {
-                                            $disabled = 'disabled';
-                                            $Server_ID_disabled = "";
+                                            $removeFieldDisabled = 'disabled';
+                                            $removeServerIDDisabled = "";
                                             $Search_btn_disabled = "";
                                             $Remove_btn_disabled = "disabled";
                                             $UserMsg = "Remove Result: " . $RemoveSqlDBStatus;
                                         } else{
-                                            $disabled = 'disabled';
-                                            $Server_ID_disabled = "";
+                                            $removeFieldDisabled = 'disabled';
+                                            $removeServerIDDisabled = "";
                                             $Search_btn_disabled = "";
                                             $Remove_btn_disabled = "disabled";
                                             $UserMsg = "Enter Server ID and Press Search";
                                         }
                                     }
-    				 			}
                             ?>
                             <h5><?php echo $UserMsg?></h5>
                             <h5><?php echo $AddPaneMessage?></h5>
 							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
-	      						<input type="text" class="form-control" id="Server_ID" name="Server_ID" value="<?php echo $Server_ID ?>" <?php echo $Server_ID_disabled?>>
-	      						<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
+	      						<input type="text" class="form-control" id="removeServerID" name="removeServerID" value="<?php echo $removeServerID ?>" <?php echo $removeServerIDDisabled?>>
+	      						<p><span class="error">* <?php echo $removeServerIDErr;?></span></p>
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" name="Server_Name" value="<?php echo $Server_Name ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Name_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="removeServerName" name="removeServerName" value="<?php echo $removeServerName ?>" <?php echo $removeFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $removeServerNameErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server IP Address">Server IP Address:</label>
-        	      				<input type="text" class="form-control" id="Server_IP_Address" name="Server_IP_Address" value="<?php echo $Server_IP_Address ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_IP_Address_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="removeServer_IP_Address" name="removeServerIPAddress" value="<?php echo $removeServerIPAddress ?>" <?php echo $removeFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $removeServerIPAddressErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Type">Server Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Type" name="Server_Type" value="<?php echo $Server_Type ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Type_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="removeServerType" name="removeServerType" value="<?php echo $removeServerType ?>" <?php echo $removeFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $removeServerTypeErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Utilization Type">Server Utilization Type:</label>
-        	      				<input type="text" class="form-control" id="Server_Util_Type" name="Server_Util_Type" value="<?php echo $Server_Util_Type ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Util_Type_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="removeServerUtilType" name="removeServerUtilType" value="<?php echo $removeServerUtilType ?>" <?php echo $removeFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $removeServerUtilTypeErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Operating System">Server Operating System:</label>
-        	      				<input type="text" class="form-control" id="Server_OS" name="Server_OS" value="<?php echo $Server_OS ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_OS_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="removeServerOS" name="removeServer_OS" value="<?php echo $removeServerOS ?>" <?php echo $removeFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $removeServerOSErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Location">Server Location:</label>
-        	      				<input type="text" class="form-control" id="Server_Location" name="Server_Location" value="<?php echo $Server_Location ?>" <?php echo $disabled; ?>>
-        	      				<p><span class="error"><?php echo $Server_Location_Err;?></span></p>
+        	      				<input type="text" class="form-control" id="removeServerLocation" name="removeServerLocation" value="<?php echo $removeServerLocation ?>" <?php echo $removeFieldDisabled; ?>>
+        	      				<p><span class="error"><?php echo $removeServerLocationErr;?></span></p>
         	    			</div>
 			    			<div class="form-group">
 	    		  				<label for="Server CPU">Server CPUs:</label>
-	      						<input type="text" class="form-control" id="Server_CPU" name="Server_CPU" value="<?php echo $Server_CPU ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_CPU_Err;?></span></p>
+	      						<input type="text" class="form-control" id="removeServerCPU" name="removeServer_CPU" value="<?php echo $removeServerCPU ?>" <?php echo $removeFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $removeServerCPUErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server RAM">Server RAM Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_RAM" name="Server_RAM"  value="<?php echo $Server_RAM ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_RAM_Err;?></span></p>
+	      						<input type="text" class="form-control" id="removeServerRAM" name="removeServerRAM"  value="<?php echo $removeServerRAM ?>" <?php echo $removeFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $removeServerRAMErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
-	      						<input type="text" class="form-control" id="Server_Storage_Allocation" name="Server_Storage_Allocation" value="<?php echo $Server_Storage_Allocation ?>" <?php echo $disabled; ?>>
-	      						<p><span class="error"><?php echo $Server_Storage_Allocation_Err;?></span></p>
+	      						<input type="text" class="form-control" id="removeServerStorageAllocation" name="removeServerStorageAllocation" value="<?php echo $removeServerStorageAllocation ?>" <?php echo $removeFieldDisabled; ?>>
+	      						<p><span class="error"><?php echo $removeServerStorageAllocationErr;?></span></p>
 	    					</div>
 	    					<button type="submit" name="btn_submit" id="RemoveSearch" class="btn btn-primary" value="RemoveSearch" <?php echo $Search_btn_disabled?>>Search</button>
 	    					<button type="submit" name="btn_submit" id="RemoveServer" class="btn btn-primary" value="RemoveServer" <?php echo $Remove_btn_disabled?>>Remove</button>
