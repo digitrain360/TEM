@@ -289,7 +289,7 @@ function Remove_Server_Details($Server_ID)
         $sql = "DELETE FROM server where Server_ID = '$Server_ID'";
         // use exec() because no results are returned
         $conn->exec($sql);
-        $result="Success";
+        $result="Success: " . $sql . "  " . $conn->rowcount;
     }
     catch(PDOException $e)
     {
@@ -454,7 +454,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
       					<a class="nav-link <?php echo $updatePaneActive?>" data-toggle="tab" href="#Update">Update</a>
     				</li>
     				<li class="nav-item">
-      					<a class="nav-link" data-toggle="tab" href="#Remove">Remove</a>
+      					<a class="nav-link <?php echo $RemovePaneActive?>" data-toggle="tab" href="#Remove">Remove</a>
     				</li>
   				</ul>
 			
@@ -662,6 +662,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                                 }
                             ?>
                             <h5><?php echo $UserMsg?></h5>
+                            <h5><?php echo $RemoveSqlDBStatus?></h5>
 							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
