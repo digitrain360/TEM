@@ -474,7 +474,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                             	$Server_ID_disabled = "readonly";
                             	$UserMsg = "Add Server Result: " . $insertSqlDBStatus;
 					       } else{
-					           if($insertSqlDBStatus = "ValidationFailed"){
+					           if($insertSqlDBStatus == "ValidationFailed"){
 					               $disabled = "";
 					               $Server_ID_disabled = "";
 					               $UserMsg = "Enter the Server Details and Press Submit";
