@@ -227,7 +227,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $Server_ID = test_input($_POST["Server_ID"]);
         }
-        $RemoveSqlDBStatus = Remove_Server_Details($Server_ID);
+        $RemoveSqlDBStatus = Remove_Server_Details($Server_ID) . "Server ID2: " . $Server_ID;
     }
 }
 function test_input($data) {
@@ -295,7 +295,7 @@ function Remove_Server_Details($Server_ID)
         $sql = "DELETE FROM server where Server_ID = '$Server_ID'";
         // use exec() because no results are returned
         $conn->exec($sql);
-        $result="Success: " . $sql . "  " . $conn->rowcount;
+        $result="Success: " . $sql . "  " . $conn->rowcount . " Server ID1: " . $Server_ID;
     }
     catch(PDOException $e)
     {
