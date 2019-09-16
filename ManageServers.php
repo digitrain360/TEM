@@ -128,7 +128,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         if ($ValidationStatus == "Success"){
-            $Update_Search_Result = Retrieve_Server_Details($updateServerID);
+            $retrieveServerID = $updateServerID;
+            $Update_Search_Result = Retrieve_Server_Details($retrieveServerID);
             if ($Update_Search_Result == "Success"){
                 $updateServerID = $retrieveServerID;
                 $updateServerName = $retrieveServerName;
