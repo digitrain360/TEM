@@ -476,7 +476,7 @@ function Remove_Server_Details($Server_ID)
                             	$Server_ID_disabled = "readonly";
                             	$UserMsg = "Add Server Result: " . $insertSqlDBStatus;
 					       } else{
-					           if ($insertSqlDBStatus = "Failed"){
+					           if ($insertSqlDBStatus == "Failed"){
                                 $disabled = "";
                                 $Server_ID_disabled = "";
                                 $UserMsg = "Correct the information and Resubmit";
