@@ -21,10 +21,12 @@ $insertSqlDBStatus = "";
 $ValidationStatus = "Success";
 $addPaneActive = "active";
 $updatePaneActive = "";
+$RemovePaneActive = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['btn_submit']=="AddServer"){
         $addPaneActive = "active";
+        $RemovePaneActive = "";
         $updatePaneActive = "";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
@@ -102,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($_POST['btn_submit']=="UpdateSearch"){
         $updatePaneActive = "active";
+        $RemovePaneActive = "";
         $addPaneActive = "";
         if (empty($_POST["Server_ID"])) {
             $Server_ID_Err = "Server ID is required";
@@ -117,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($_POST['btn_submit']=="UpdateServer"){
         $updatePaneActive = "active";
+        $RemovePaneActive = "";
         $addPaneActive = "";
         $UpdateSqlDBStatus = "Inside Update Server";
         if (empty($_POST["Server_ID"])) {
@@ -196,6 +200,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $UpdateSqlDBStatus = "Validation Failed";
         }
     }
+    
+    if ($_POST['btn_submit']=="RemoveSearch"){
+        $RemovePaneActive = "active";
+        $updatePaneActive = "";
+        $addPaneActive = "";
+        if (empty($_POST["Server_ID"])) {
+            $Server_ID_Err = "Server ID is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_ID = test_input($_POST["Server_ID"]);
+        }
+        
+        if ($ValidationStatus == "Success"){
+            $Remove_Search_Result = Retrieve_Server_Details($Server_ID);
+            //$DataRetrieved = $Server_Name . " " . $Server_IP_Address . " " . $Server_Location . " " . $Server_Type . " " . $Server_Util_Type . " " . $Server_CPU . " " . $Server_RAM . " " . $Server_Storage_Allocation . " " . $Server_OS;
+        }
+    }
+    if ($_POST['btn_submit']=="RemoveServer"){
+        $RemovePaneActive = "active";
+        $updatePaneActive = "";
+        $addPaneActive = "";
+        $RemoveSqlDBStatus = Remove_Server_Details($Server_ID);
+    }
 }
 function test_input($data) {
     $data = trim($data);
@@ -237,6 +264,40 @@ function insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$
 
 	$conn = null;
 	return $result;
+}
+
+function Remove_Server_Details($Server_ID)
+{
+    $servername = "dtemdm01.mysql.database.azure.com";
+    $username = "temdbmadm@dtemdm01";
+    $password = "waheguru@1112";
+    $options = array(
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+        PDO::MYSQL_ATTR_SSL_CA => '/SSL/BaltimoreCyberTrustRoot.crt',
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+    );
+    
+    /*$servername = "localhost";
+     $username = "root";
+     $password = "temjul19";
+     $dbname = "dbtemd01";*/
+    $result = "";
+    try {
+        $conn = new PDO("mysql:host=$servername;port=3306;dbname=dtemdb01", $username, $password, $options);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "DELETE FROM server where Server_ID = '$Server_ID'";
+        // use exec() because no results are returned
+        $conn->exec($sql);
+        $result="Success";
+    }
+    catch(PDOException $e)
+    {
+        $result= $sql . "<br>" . $e->getMessage();
+    }
+    
+    $conn = null;
+    return $result;
 }
 
 function Retrieve_Server_Details($Server_ID)//,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS)
@@ -573,19 +634,43 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 				            ?>
 				          </form>
 					</div>
-	    			<div class="tab-pane container fade" id="Remove">
-	    				<h5> Enter ID or Name of the Server to be removed and Press Search</h5>
-						<p><span class="error">* required field</span></p>
+	    			<div class="tab-pane container <?php echo $RemovePaneActive?>" id="Remove">
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+				 			<?php 
+                                if ($Remove_Search_Result == "Success"){
+                                    $disabled = "";
+                                    $Server_ID_disabled = "readonly";
+                                    $Search_btn_disabled = "disabled";
+                                    $Remove_btn_disabled = "";
+                                    $UserMsg = "Press on Remove button to remove Server from Inventory";
+                                } else {
+                                    if ($UpdateSqlDBStatus == "Success")
+                                    {
+                                        $disabled = 'disabled';
+                                        $Server_ID_disabled = "";
+                                        $Search_btn_disabled = "";
+                                        $Remove_btn_disabled = "disabled";
+                                        $UserMsg = "Remove Result: " . $RemoveSqlDBStatus;
+                                    } else{
+                                        $disabled = 'disabled';
+                                        $Server_ID_disabled = "";
+                                        $Search_btn_disabled = "";
+                                        $Remove_btn_disabled = "disabled";
+                                        $UserMsg = "Enter Server ID and Press Search";
+                                    }
+                                }
+                            ?>
+                            <h5><?php echo $UserMsg?></h5>
+							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
-	      						<input type="text" class="form-control" id="Server_ID" placeholder="Enter Server ID" name="Server_ID">
+	      						<input type="text" class="form-control" id="Server_ID" placeholder="Enter Server ID" name="Server_ID" <?php echo $Server_ID_disabled?>>
 	      						<p><span class="error">* <?php echo $Server_ID_Err;?></span></p>
 	    					</div>
         	    			<div class="form-group">
         	      				<label for="Server Name">Server Name:</label>
-        	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name">
+        	      				<input type="text" class="form-control" id="Server_Name" placeholder="Enter Server Name" name="Server_Name" disabled>
         	      				<p><span class="error">* <?php echo $Server_Name_Err;?></span></p>
         	    			</div>
         	    			<div class="form-group">
@@ -620,8 +705,8 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
 	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation" disabled>
 	    					</div>
-	    					<button type="button" name="btn_submit" id="RemoveSearch" class="btn btn-primary" value="RemoveSearch">Search</button>
-	    					<button type="button" name="btn_submit" id="RemoveServer" class="btn btn-primary" value="RemoveServer" disabled>Remove</button>
+	    					<button type="button" name="btn_submit" id="RemoveSearch" class="btn btn-primary" value="RemoveSearch" <?php echo $Search_btn_disabled?>>Search</button>
+	    					<button type="button" name="btn_submit" id="RemoveServer" class="btn btn-primary" value="RemoveServer" <?php echo $Remove_btn_disabled?>>Remove</button>
 				           </form>
 	    			</div>
 	    		</div>
