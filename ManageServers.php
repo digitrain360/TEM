@@ -478,7 +478,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 					               $disabled = "";
 					               $Server_ID_disabled = "";
 					               $UserMsg = "Enter the Server Details and Press Submit";
-					               $AddPaneMessage = "I have been to Validation Failed in Add Pane - Devil";
+					               $AddPaneMessage = "I have been to Validation Failed in Add Pane - Devil " . $Server_ID;
 					           }else{
                                 $disabled = "";
                                 $Server_ID_disabled = "";
