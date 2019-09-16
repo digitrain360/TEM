@@ -503,8 +503,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
   				</ul>
 			
 				<div class="tab-content">
-				<!-- <div class="tab-pane <?php echo $addPaneActive?> container" id="Add">  -->	
-					<div class="tab-pane container" id="Add">
+				<div class="tab-pane <?php echo $addPaneActive?> container" id="Add">
 					    <?php
 					      if ($insertSqlDBStatus == "Success"){
                                    $addFieldDisabled = "readonly";
