@@ -560,6 +560,19 @@ function Remove_Server_Details($Server_ID)
                                     $Search_btn_disabled = "disabled";
                                     $Update_btn_disabled = "";
                                     $UserMsg = "Make changes to the attributes as needed and Press Update";
+                                     echo "<h4>Result</h4>";
+                                     echo $disabled;
+                                     echo $Update_Search_Result;
+                                     echo $Server_ID;
+                                     echo $Server_Name;
+                                     echo $Server_IP_Address;
+                                     echo $Server_Location;
+                                     echo $Server_Type;
+                                     echo $Server_Util_Type;
+                                     echo $Server_CPU;
+                                     echo $Server_RAM;
+                                     echo $Server_Storage_Allocation;
+                                     echo $Server_OS;
                                 } else {
                                     if ($UpdateSqlDBStatus == "Success")
                                     {
