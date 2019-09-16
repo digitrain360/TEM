@@ -221,6 +221,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $RemovePaneActive = "active";
         $updatePaneActive = "";
         $addPaneActive = "";
+        if (empty($_POST["Server_ID"])) {
+            $Server_ID_Err = "Server ID is required";
+            $ValidationStatus = "Error";
+        } else {
+            $Server_ID = test_input($_POST["Server_ID"]);
+        }
         $RemoveSqlDBStatus = Remove_Server_Details($Server_ID);
     }
 }
