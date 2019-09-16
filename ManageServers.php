@@ -468,11 +468,12 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 			
 				<div class="tab-content">
 					<div class="tab-pane <?php echo $addPaneActive?> container" id="Add">
-					    <?php 
-					       if ($insertSqlDBStatus == "Success"){
-                                $disabled = "readonly";
-                            	$Server_ID_disabled = "readonly";
-                            	$UserMsg = "Add Server Result: " . $insertSqlDBStatus;
+					    <?php
+					    if ($addPaneActive == "active"){
+					         if ($insertSqlDBStatus == "Success"){
+                                   $disabled = "readonly";
+                                   $Server_ID_disabled = "readonly";
+                                   $UserMsg = "Add Server Result: " . $insertSqlDBStatus;
 					       } else{
 					           if($insertSqlDBStatus == "ValidationFailed"){
 					               $disabled = "";
@@ -480,13 +481,14 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 					               $UserMsg = "Enter the Server Details and Press Submit";
 					               $AddPaneMessage = "I have been to Validation Failed in Add Pane - Devil " . $Server_ID;
 					           }else{
-                                $disabled = "";
-                                $Server_ID_disabled = "";
-                                $UserMsg = "Enter the Server Details and Press Submit";
-                                $AddPaneMessage = "I have been to Add Pane - Devil " . $Server_ID;
-                                $Server_ID = "";
+                                    $disabled = "";
+                                    $Server_ID_disabled = "";
+                                    $UserMsg = "Enter the Server Details and Press Submit";
+                                    $AddPaneMessage = "I have been to Add Pane - Devil " . $Server_ID;
+                                    $Server_ID = "";
 					           }
 					       }
+					    }
                         ?>
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
@@ -554,28 +556,30 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
-                                if ($Update_Search_Result == "Success"){
-                                    $disabled = "";
-                                    $Server_ID_disabled = "readonly";
-                                    $Search_btn_disabled = "disabled";
-                                    $Update_btn_disabled = "";
-                                    $UserMsg = "Make changes to the attributes as needed and Press Update";
-                                } else {
-                                    if ($UpdateSqlDBStatus == "Success")
-                                    {
-                                        $disabled = 'disabled';
-                                        $Server_ID_disabled = "";
-                                        $Search_btn_disabled = "";
-                                        $Update_btn_disabled = "disabled";
-                                        $UserMsg = "Update Result: " . $UpdateSqlDBStatus;
-                                    } else{
-                                        $disabled = 'disabled';
-                                        $Server_ID_disabled = "";
-                                        $Search_btn_disabled = "";
-                                        $Update_btn_disabled = "disabled";
-                                        $UserMsg = "Enter Server ID and Press Search";
+    				 			if ($updatePaneActive == "active"){
+                                    if ($Update_Search_Result == "Success"){
+                                        $disabled = "";
+                                        $Server_ID_disabled = "readonly";
+                                        $Search_btn_disabled = "disabled";
+                                        $Update_btn_disabled = "";
+                                        $UserMsg = "Make changes to the attributes as needed and Press Update";
+                                    } else {
+                                        if ($UpdateSqlDBStatus == "Success")
+                                        {
+                                            $disabled = 'disabled';
+                                            $Server_ID_disabled = "";
+                                            $Search_btn_disabled = "";
+                                            $Update_btn_disabled = "disabled";
+                                            $UserMsg = "Update Result: " . $UpdateSqlDBStatus;
+                                        } else{
+                                            $disabled = 'disabled';
+                                            $Server_ID_disabled = "";
+                                            $Search_btn_disabled = "";
+                                            $Update_btn_disabled = "disabled";
+                                            $UserMsg = "Enter Server ID and Press Search";
+                                        }
                                     }
-                                }
+    				 			}
                             ?>
                             <h5><?php echo $UserMsg?></h5>
 							<p><span class="error">* required field</span></p>
@@ -654,28 +658,30 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
-                                if ($Remove_Search_Result == "Success"){
-                                    $disabled = "disabled";
-                                    $Server_ID_disabled = "readonly";
-                                    $Search_btn_disabled = "disabled";
-                                    $Remove_btn_disabled = "";
-                                    $UserMsg = "Press on Remove button to remove Server from Inventory";
-                                } else {
-                                    if ($RemoveSqlDBStatus == "Success")
-                                    {
-                                        $disabled = 'disabled';
-                                        $Server_ID_disabled = "";
-                                        $Search_btn_disabled = "";
-                                        $Remove_btn_disabled = "disabled";
-                                        $UserMsg = "Remove Result: " . $RemoveSqlDBStatus;
-                                    } else{
-                                        $disabled = 'disabled';
-                                        $Server_ID_disabled = "";
-                                        $Search_btn_disabled = "";
-                                        $Remove_btn_disabled = "disabled";
-                                        $UserMsg = "Enter Server ID and Press Search";
+    				 			if($RemovePaneActive == "active"){
+                                    if ($Remove_Search_Result == "Success"){
+                                        $disabled = "disabled";
+                                        $Server_ID_disabled = "readonly";
+                                        $Search_btn_disabled = "disabled";
+                                        $Remove_btn_disabled = "";
+                                        $UserMsg = "Press on Remove button to remove Server from Inventory";
+                                    } else {
+                                        if ($RemoveSqlDBStatus == "Success")
+                                        {
+                                            $disabled = 'disabled';
+                                            $Server_ID_disabled = "";
+                                            $Search_btn_disabled = "";
+                                            $Remove_btn_disabled = "disabled";
+                                            $UserMsg = "Remove Result: " . $RemoveSqlDBStatus;
+                                        } else{
+                                            $disabled = 'disabled';
+                                            $Server_ID_disabled = "";
+                                            $Search_btn_disabled = "";
+                                            $Remove_btn_disabled = "disabled";
+                                            $UserMsg = "Enter Server ID and Press Search";
+                                        }
                                     }
-                                }
+    				 			}
                             ?>
                             <h5><?php echo $UserMsg?></h5>
                             <h5><?php echo $AddPaneMessage?></h5>
