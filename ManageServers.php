@@ -705,8 +705,8 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 	      						<label for="Server Storage Allocation">Server Storage Allocation:</label>
 	      						<input type="text" class="form-control" id="Server_Storage_Allocation" placeholder="Enter Server Storage Allocation" name="Server_Storage_Allocation" disabled>
 	    					</div>
-	    					<button type="button" name="btn_submit" id="RemoveSearch" class="btn btn-primary" value="RemoveSearch" <?php echo $Search_btn_disabled?>>Search</button>
-	    					<button type="button" name="btn_submit" id="RemoveServer" class="btn btn-primary" value="RemoveServer" <?php echo $Remove_btn_disabled?>>Remove</button>
+	    					<button type="submit" name="btn_submit" id="RemoveSearch" class="btn btn-primary" value="RemoveSearch" <?php echo $Search_btn_disabled?>>Search</button>
+	    					<button type="submit" name="btn_submit" id="RemoveServer" class="btn btn-primary" value="RemoveServer" <?php echo $Remove_btn_disabled?>>Remove</button>
 				           </form>
 	    			</div>
 	    		</div>
