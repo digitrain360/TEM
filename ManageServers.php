@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $addServerUtilType = test_input($_POST["addServerUtilType"]);
         }
         
-        if (empty($_POST["addServer_OS"])) {
+        if (empty($_POST["addServerOS"])) {
             $addServerOSErr = "Server Operation System is required";
             $ValidationStatus = "Error";
         } else {
@@ -183,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $updateServerUtilType = test_input($_POST["updateServerUtilType"]);
         }
         
-        if (empty($_POST["updateServer_OS"])) {
+        if (empty($_POST["updateServerOS"])) {
             $updateServerOSErr = "Server Operation System is required";
             $ValidationStatus = "Error";
         } else {
@@ -555,7 +555,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Operating System">Server Operating System:</label>
-        	      				<input type="text" class="form-control" id="addServerOS" name="addServer_OS" value="<?php echo $addServerOS ?>" <?php echo $addFieldDisabled; ?>>
+        	      				<input type="text" class="form-control" id="addServerOS" name="addServerOS" value="<?php echo $addServerOS ?>" <?php echo $addFieldDisabled; ?>>
         	      				<p><span class="error"><?php echo $addServerOSErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
@@ -565,7 +565,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
         	    			</div>
 			    			<div class="form-group">
 	    		  				<label for="Server CPU">Server CPUs:</label>
-	      						<input type="text" class="form-control" id="addServerCPU" name="addServer_CPU" value="<?php echo $addServerCPU ?>" <?php echo $addFieldDisabled; ?>>
+	      						<input type="text" class="form-control" id="addServerCPU" name="addServerCPU" value="<?php echo $addServerCPU ?>" <?php echo $addFieldDisabled; ?>>
 	      						<p><span class="error"><?php echo $addServerCPUErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
@@ -642,7 +642,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Operating System">Server Operating System:</label>
-        	      				<input type="text" class="form-control" id="updateServerOS" name="updateServer_OS" value="<?php echo $updateServerOS ?>" <?php echo $updateFieldDisabled; ?>>
+        	      				<input type="text" class="form-control" id="updateServerOS" name="updateServerOS" value="<?php echo $updateServerOS ?>" <?php echo $updateFieldDisabled; ?>>
         	      				<p><span class="error"><?php echo $updateServerOSErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
@@ -652,7 +652,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
         	    			</div>
 			    			<div class="form-group">
 	    		  				<label for="Server CPU">Server CPUs:</label>
-	      						<input type="text" class="form-control" id="updateServerCPU" name="updateServer_CPU" value="<?php echo $updateServerCPU ?>" <?php echo $updateFieldDisabled; ?>>
+	      						<input type="text" class="form-control" id="updateServerCPU" name="updateServerCPU" value="<?php echo $updateServerCPU ?>" <?php echo $updateFieldDisabled; ?>>
 	      						<p><span class="error"><?php echo $updateServerCPUErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
@@ -743,7 +743,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
         	    			</div>
         	    			<div class="form-group">
         	      				<label for="Server Operating System">Server Operating System:</label>
-        	      				<input type="text" class="form-control" id="removeServerOS" name="removeServer_OS" value="<?php echo $removeServerOS ?>" <?php echo $removeFieldDisabled; ?>>
+        	      				<input type="text" class="form-control" id="removeServerOS" name="removeServerOS" value="<?php echo $removeServerOS ?>" <?php echo $removeFieldDisabled; ?>>
         	      				<p><span class="error"><?php echo $removeServerOSErr;?></span></p>
         	    			</div>
         	    			<div class="form-group">
@@ -753,7 +753,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
         	    			</div>
 			    			<div class="form-group">
 	    		  				<label for="Server CPU">Server CPUs:</label>
-	      						<input type="text" class="form-control" id="removeServerCPU" name="removeServer_CPU" value="<?php echo $removeServerCPU ?>" <?php echo $removeFieldDisabled; ?>>
+	      						<input type="text" class="form-control" id="removeServerCPU" name="removeServerCPU" value="<?php echo $removeServerCPU ?>" <?php echo $removeFieldDisabled; ?>>
 	      						<p><span class="error"><?php echo $removeServerCPUErr;?></span></p>
 	    					</div>
 	    					<div class="form-group">
