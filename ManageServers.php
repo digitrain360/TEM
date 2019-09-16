@@ -484,7 +484,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                                 $Server_ID_disabled = "";
                                 $UserMsg = "Enter the Server Details and Press Submit";
                                 $Server_ID = "";
-                                $AddPaneMessage = "I have been to Add Pane - Devil";
+                                $AddPaneMessage = "I have been to Add Pane - Devil " . $Server_ID;
 					           }
 					       }
                         ?>
