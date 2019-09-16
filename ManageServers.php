@@ -100,6 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($ValidationStatus == "Success"){
             $insertSqlDBStatus = insert_db($Server_ID,$Server_Name,$Server_IP_Address,$Server_Location,$Server_Type,$Server_Util_Type,$Server_CPU,$Server_RAM,$Server_Storage_Allocation,$Server_OS);
+        } else{
+            $insertSqlDBStatus = "ValidationFailed";
         }
     }
     if ($_POST['btn_submit']=="UpdateSearch"){
@@ -295,7 +297,7 @@ function Remove_Server_Details($Server_ID)
         $sql = "DELETE FROM server where Server_ID = '$Server_ID'";
         // use exec() because no results are returned
         $conn->exec($sql);
-        $result="Success: ";
+        $result="Success";
     }
     catch(PDOException $e)
     {
@@ -466,16 +468,24 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
 			
 				<div class="tab-content">
 					<div class="tab-pane <?php echo $addPaneActive?> container" id="Add">
-					
 					    <?php 
 					       if ($insertSqlDBStatus == "Success"){
                                 $disabled = "readonly";
                             	$Server_ID_disabled = "readonly";
                             	$UserMsg = "Add Server Result: " . $insertSqlDBStatus;
 					       } else{
+					           if($insertSqlDBStatus = "ValidationFailed"){
+					               $disabled = "";
+					               $Server_ID_disabled = "";
+					               $UserMsg = "Enter the Server Details and Press Submit";
+					               $AddPaneMessage = "I have been to Validation Failed in Add Pane - Devil";
+					           }else{
                                 $disabled = "";
                                 $Server_ID_disabled = "";
                                 $UserMsg = "Enter the Server Details and Press Submit";
+                                $Server_ID = "";
+                                $AddPaneMessage = "I have been to Add Pane - Devil";
+					           }
 					       }
                         ?>
 			             <!-- <form method="post" action="/action_page.php">  -->
@@ -668,7 +678,7 @@ function Update_Server_Details($Server_ID,$Server_Name,$Server_IP_Address,$Serve
                                 }
                             ?>
                             <h5><?php echo $UserMsg?></h5>
-                            <h5><?php echo $RemoveSqlDBStatus?></h5>
+                            <h5><?php echo $AddPaneMessage?></h5>
 							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
