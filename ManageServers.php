@@ -22,6 +22,7 @@
 //Variable definitions to hold Server Details
 $addServerID = $addServerName = $addServerIPAddress = $addServerLocation = $addServerType = $addServerUtilType = $addServerCPU = $addServerRAM = $addServerStorageAllocation = $addServerOS = "";
 $updateServerID = $updateServerName = $updateServerIPAddress = $updateServerLocation = $updateServerType = $updateServerUtilType = $updateServerCPU = $updateServerRAM = $updateServerStorageAllocation = $updateServerOS = "";
+$removeServerID = $removeServerName = $removeServerIPAddress = $removeServerLocation = $removeServerType = $removeServerUtilType = $removeServerCPU = $removeServerRAM = $removeServerStorageAllocation = $removeServerOS = "";
 $retrieveServerID = $retrieveServerName = $retrieveServerIPAddress = $retrieveServerLocation = $retrieveServerType = $retrieveServerUtilType = $retrieveServerCPU = $retrieveServerRAM = $retrieveServerStorageAllocation = $retrieveServerOS = "";$insertSqlDBStatus = "";
 
 //Variables definitions to hold error messages
@@ -510,18 +511,18 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                    $addFieldDisabled = "readonly";
                                    $addServerIDdisabled = "readonly";
                                    $UserMsg = "Add Server Result: " . $insertSqlDBStatus;
+                                   $insertSqlDBStatus;
 					       } else{
 					           if($insertSqlDBStatus == "ValidationFailed"){
 					               $addFieldDisabled = "";
 					               $addServerIDdisabled = "";
 					               $UserMsg = "Enter the Server Details and Press Submit";
-					               $AddPaneMessage = "I have been to Validation Failed in Add Pane - Devil " . $addServerID;
 					           }else{
                                     $addFieldDisabled = "";
                                     $addServerIDdisabled = "";
                                     $UserMsg = "Enter the Server Details and Press Submit";
-                                    $AddPaneMessage = "I have been to Add Pane - Devil " . $addServerID;
                                     $addServerID = "";
+                                    $addServerID = $addServerName = $addServerIPAddress = $addServerLocation = $addServerType = $addServerUtilType = $addServerCPU = $addServerRAM = $addServerStorageAllocation = $addServerOS = "";
 					           }
 					      }
                         ?>
@@ -597,6 +598,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                         $Search_btn_disabled = "disabled";
                                         $Update_btn_disabled = "";
                                         $UserMsg = "Make changes to the attributes as needed and Press Update";
+                                        $Update_Search_Result = "";
                                     } else {
                                         if ($UpdateSqlDBStatus == "Success")
                                         {
@@ -605,13 +607,14 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                             $Search_btn_disabled = "";
                                             $Update_btn_disabled = "disabled";
                                             $UserMsg = "Update Result: " . $UpdateSqlDBStatus;
+                                            $UpdateSqlDBStatus = "";
                                         } else{
                                             $updateFieldDisabled = 'disabled';
                                             $updateServerIDDisabled = "";
                                             $Search_btn_disabled = "";
                                             $Update_btn_disabled = "disabled";
                                             $UserMsg = "Enter Server ID and Press Search";
-                                        }
+                                            $updateServerID = $updateServerName = $updateServerIPAddress = $updateServerLocation = $updateServerType = $updateServerUtilType = $updateServerCPU = $updateServerRAM = $updateServerStorageAllocation = $updateServerOS = "";
                                     }
                             ?>
                             <h5><?php echo $UserMsg?></h5>
@@ -669,22 +672,6 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
 	    					<button type="submit" name="btn_submit" id="UpdateSearch" class="btn btn-primary" value="UpdateSearch" <?php echo $Search_btn_disabled?>>Search</button>
 	    					<button type="submit" name="btn_submit" id="UpdateServer" class="btn btn-primary" value="UpdateServer" <?php  echo $Update_btn_disabled?>>Update</button>
 	    					<button type="submit" name="btn_submit" id="ClearData" class="btn btn-primary" value="ClearData">Clear</button>
-	    					<?php
-					        /*   echo "<h4>Result</h4>";
-					           echo $disabled;
-					           echo $Update_Search_Result;
-					           echo $Server_ID;
-					           echo $Server_Name;
-					           echo $Server_IP_Address;
-					           echo $Server_Location;
-					           echo $Server_Type;
-					           echo $Server_Util_Type;
-					           echo $Server_CPU;
-					           echo $Server_RAM;
-					           echo $Server_Storage_Allocation;
-					           echo $Server_OS;
-					           echo $DataRetrieved;*/
-				            ?>
 				          </form>
 					</div>
 	    			<div class="tab-pane container <?php echo $RemovePaneActive?>" id="Remove">
@@ -696,6 +683,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                         $removeServerIDDisabled = "readonly";
                                         $Search_btn_disabled = "disabled";
                                         $Remove_btn_disabled = "";
+                                        $Remove_Search_Result = "";
                                         $UserMsg = "Press on Remove button to remove Server from Inventory";
                                     } else {
                                         if ($RemoveSqlDBStatus == "Success")
@@ -705,17 +693,19 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                             $Search_btn_disabled = "";
                                             $Remove_btn_disabled = "disabled";
                                             $UserMsg = "Remove Result: " . $RemoveSqlDBStatus;
+                                            $RemoveSqlDBStatus = "";
                                         } else{
                                             $removeFieldDisabled = 'disabled';
                                             $removeServerIDDisabled = "";
                                             $Search_btn_disabled = "";
                                             $Remove_btn_disabled = "disabled";
+                                            $removeServerID = "";
                                             $UserMsg = "Enter Server ID and Press Search";
+                                            $removeServerID = $removeServerName = $removeServerIPAddress = $removeServerLocation = $removeServerType = $removeServerUtilType = $removeServerCPU = $removeServerRAM = $removeServerStorageAllocation = $removeServerOS = "";}
                                         }
                                     }
                             ?>
                             <h5><?php echo $UserMsg?></h5>
-                            <h5><?php echo $AddPaneMessage?></h5>
 							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
