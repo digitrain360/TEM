@@ -24,7 +24,7 @@ $addServerID = $addServerName = $addServerIPAddress = $addServerLocation = $addS
 $updateServerID = $updateServerName = $updateServerIPAddress = $updateServerLocation = $updateServerType = $updateServerUtilType = $updateServerCPU = $updateServerRAM = $updateServerStorageAllocation = $updateServerOS = "";
 $removeServerID = $removeServerName = $removeServerIPAddress = $removeServerLocation = $removeServerType = $removeServerUtilType = $removeServerCPU = $removeServerRAM = $removeServerStorageAllocation = $removeServerOS = "";
 $retrieveServerID = $retrieveServerName = $retrieveServerIPAddress = $retrieveServerLocation = $retrieveServerType = $retrieveServerUtilType = $retrieveServerCPU = $retrieveServerRAM = $retrieveServerStorageAllocation = $retrieveServerOS = "";$insertSqlDBStatus = "";
-
+$removeCounter = 0;
 //Variables definitions to hold error messages
 $addServerIDErr = $addServerNameErr = $addServerIPAddressErr = $addServerLocationErr = $addServerTypeErr = $addServerUtilTypeErr = $addServerCPUErr = $addServerRAMErr = $addServerStorageAllocationErr = $addServerOSErr = "";
 $updateServerIDErr = $updateServerNameErr = $updateServerIPAddressErr = $updateServerLocationErr = $updateServerTypeErr = $updateServerUtilTypeErr = $updateServerCPUErr = $updateServerRAMErr = $updateServerStorageAllocationErr = $updateServerOSErr = "";
