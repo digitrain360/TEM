@@ -516,7 +516,8 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
 					           if($insertSqlDBStatus == "ValidationFailed"){
 					               $addFieldDisabled = "";
 					               $addServerIDdisabled = "";
-					               $UserMsg = "Enter the Server Details and Press Submit";
+					               $UserMsg = "Correct the Errors and Press Submit again";
+					               $insertSqlDBStatus = "";
 					           }else{
                                     $addFieldDisabled = "";
                                     $addServerIDdisabled = "";
@@ -685,6 +686,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                         $Remove_btn_disabled = "";
                                         $Remove_Search_Result = "";
                                         $UserMsg = "Press on Remove button to remove Server from Inventory";
+                                        $removeCounter = $removeCounter + 1;
                                     } else {
                                         if ($RemoveSqlDBStatus == "Success")
                                         {
@@ -693,7 +695,8 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                             $Search_btn_disabled = "";
                                             $Remove_btn_disabled = "disabled";
                                             $UserMsg = "Remove Result: " . $RemoveSqlDBStatus;
-                                            $RemoveSqlDBStatus = "";
+                                            $RemoveSqlDBStatus = "";    
+                                            $removeCounter = $removeCounter + 1;
                                         } else{
                                             $removeFieldDisabled = 'disabled';
                                             $removeServerIDDisabled = "";
@@ -702,10 +705,11 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                             $removeServerID = "";
                                             $UserMsg = "Enter Server ID and Press Search";
                                             $removeServerID = $removeServerName = $removeServerIPAddress = $removeServerLocation = $removeServerType = $removeServerUtilType = $removeServerCPU = $removeServerRAM = $removeServerStorageAllocation = $removeServerOS = "";}
-                                        }
+                                            $removeCounter = $removeCounter + 1;}
                                     }
                             ?>
                             <h5><?php echo $UserMsg?></h5>
+                            <h5><?php echo $removeCounter?></h5>
 							<p><span class="error">* required field</span></p>
 	    					<div class="form-group">
 	      						<label for="Server ID">Server ID:</label>
