@@ -35,6 +35,7 @@ $ValidationStatus = "Success";
 $addPaneActive = "active";
 $updatePaneActive = "";
 $RemovePaneActive = "";
+$currentTab = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['btn_submit']=="AddServer"){
@@ -505,14 +506,20 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
   				</ul>
 			
 				<div class="tab-content">
-				<div class="tab-pane <?php echo $addPaneActive?> container" id="Add">
+					<?php 
+					if ($currentTab <> "AddServer"){
+					    $addServerID = $addServerName = $addServerIPAddress = $addServerLocation = $addServerType = $addServerUtilType = $addServerCPU = $addServerRAM = $addServerStorageAllocation = $addServerOS = "";
+					}
+					?>
+					<div class="tab-pane <?php echo $addPaneActive?> container" id="Add">				
 					    <?php
 					      if ($insertSqlDBStatus == "Success"){
                                    $addFieldDisabled = "readonly";
                                    $addServerIDdisabled = "readonly";
                                    $UserMsg = "Add Server Result: " . $insertSqlDBStatus;
                                    $insertSqlDBStatus;
-					       } else{
+                                   $currentTab = "AddServer";
+					      } else{
 					           if($insertSqlDBStatus == "ValidationFailed"){
 					               $addFieldDisabled = "";
 					               $addServerIDdisabled = "";
@@ -524,6 +531,7 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
                                     $UserMsg = "Enter the Server Details and Press Submit";
                                     $addServerID = "";
                                     $addServerID = $addServerName = $addServerIPAddress = $addServerLocation = $addServerType = $addServerUtilType = $addServerCPU = $addServerRAM = $addServerStorageAllocation = $addServerOS = "";
+                                    $currentTab = "AddServer";
 					           }
 					      }
                         ?>
@@ -591,8 +599,15 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
 	    			</div>
 	    			<div class="tab-pane container <?php echo $updatePaneActive?>" id="Update">
 			             <!-- <form method="post" action="/action_page.php">  -->
+						<?php 
+        					if ($currentTab <> "UpdateServer"){
+        					    
+        					    $updateServerID = $updateServerName = $updateServerIPAddress = $updateServerLocation = $updateServerType = $updateServerUtilType = $updateServerCPU = $updateServerRAM = $updateServerStorageAllocation = $updateServerOS = "";
+        					}
+    					?>
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				 			<?php 
+				 			        $currentTab = "UpdateServer";
                                     if ($Update_Search_Result == "Success"){
                                         $updateFieldDisabled = "";
                                         $updateServerIDDisabled = "readonly";
@@ -678,8 +693,9 @@ function Update_Server_Details($updateServerID,$updateServerName,$updateServerIP
 	    			<div class="tab-pane container <?php echo $RemovePaneActive?>" id="Remove">
 			             <!-- <form method="post" action="/action_page.php">  -->
 				 		<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-				 			<?php 
-                                    if ($Remove_Search_Result == "Success"){
+				 			<?php
+				 			        $currentTab = "UpdateServer";
+				 			        if ($Remove_Search_Result == "Success"){
                                         $removeFieldDisabled = "disabled";
                                         $removeServerIDDisabled = "readonly";
                                         $Search_btn_disabled = "disabled";
